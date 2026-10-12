@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Identidad "plano urbano": azul de mapa + cian del río del logo. */
+:root {
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+:root[data-theme="dark"] {
+  --background: oklch(16.5% 0.02 255);
+  --surface: oklch(20% 0.022 255);
+  --surface-raised: oklch(23% 0.024 255);
+  --surface-muted: oklch(26% 0.025 255);
+  --border: oklch(30% 0.025 255);
+  --border-subtle: oklch(25% 0.022 255);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Cuadrícula de plano de ciudad, con viñeta hacia los bordes. */
+.city-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--accent) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--accent) 7%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 100%);
+}
+
+.font-display { font-family: var(--font-display); letter-spacing: 0; }
+
+
+/* Acento propio "leal": el cian del río en el logo. */
+:root[data-accent="leal"] {
+  --accent: #0a8fd6;
+  --accent-strong: #066aa0;
+  --accent-subtle: rgb(10 143 214 / .14);
+  --accent-foreground: #ffffff;
+  --control-on: #0a8fd6;
+  --control-thumb-on: #fff;
+  --control-glyph: #fff;
+}
+:root[data-theme="dark"][data-accent="leal"] {
+  --accent: #19b5ff;
+  --accent-strong: #8bd8ff;
+  --accent-subtle: rgb(25 181 255 / .18);
+  --accent-foreground: #04121c;
+  --control-on: #19b5ff;
+  --control-thumb-on: #04121c;
+  --control-glyph: #04121c;
+}
