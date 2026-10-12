@@ -55,7 +55,7 @@ export function ResourcesPage() {
 
       <Section id="assets" eyebrow="Recursos" title="Assets">
         <Subheading>Cities: Skylines 2</Subheading>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {paradoxAssets.map((item) => (
             <WorkshopCard key={item.id} item={item} label="Cities: Skylines 2 · Paradox Mods" />
           ))}
@@ -67,7 +67,7 @@ export function ResourcesPage() {
         </div>
         <div className="mt-10">
           <Subheading>Cities: Skylines</Subheading>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
             {workshopAssets.map((item) => (
               <WorkshopCard key={item.id} item={item} label={`${item.game} · Steam Workshop`} />
             ))}
@@ -81,7 +81,7 @@ export function ResourcesPage() {
       </Section>
 
       <Section id="mapas" eyebrow="Recursos" title="Mapas">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
           {workshopMaps.map((item) => (
             <WorkshopCard key={item.id} item={item} label={`${item.game} · Steam Workshop`} />
           ))}
