@@ -19,5 +19,8 @@ export const workshopAssets = items.filter((item) => !isMap(item))
 
 export const links = {
   paradoxCs2: 'https://mods.paradoxplaza.com/authors/lealmafor/cities_skylines_2',
+  paradoxProfile: 'https://mods.paradoxplaza.com/authors/lealmafor',
+  playsetCs2: 'https://mods.paradoxplaza.com/playsets/cities_skylines_2/4421189',
+  kofi: 'https://ko-fi.com/lealmafor',
   steamCs1: 'https://steamcommunity.com/id/lealmafor/myworkshopfiles/?p=1',
 } as const

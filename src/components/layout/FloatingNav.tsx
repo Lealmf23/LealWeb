@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { Menu } from 'lucide-react'
-import { Button } from '@/components/arc/button/button'
 import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from '@/components/arc/drawer/drawer'
 import { nav, socials } from '@/data/site'
 import { BrandIcon } from './BrandIcon'
 import { asset } from '@/lib/utils'
-
-const youtube = socials[0]
 
 export function FloatingNav() {
   const [scrolled, setScrolled] = useState(false)
@@ -21,25 +18,20 @@ export function FloatingNav() {
   }, [])
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4">
-      <nav
-        aria-label="Principal"
-        className={[
-          'pointer-events-auto flex items-center gap-1 rounded-full border border-[var(--border)] px-2 py-1.5 backdrop-blur-xl transition-all duration-300',
-          scrolled
-            ? 'bg-[color-mix(in_oklab,var(--surface)_88%,transparent)] shadow-[var(--shadow-floating)]'
-            : 'bg-[color-mix(in_oklab,var(--surface)_60%,transparent)]',
-        ].join(' ')}
-      >
-        <Link
-          to="/"
-          className="font-display flex items-center gap-2 rounded-full py-1 pl-3 pr-3 text-xl font-extrabold uppercase tracking-wide text-[var(--foreground)]"
-        >
-          <img src={asset('logo-96.png')} alt="" width={28} height={28} className="h-7 w-7 rounded-lg" />
-          Leal
+    <header
+      className={[
+        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
+        scrolled
+          ? 'border-[var(--border)] bg-[color-mix(in_oklab,var(--background)_88%,transparent)] backdrop-blur-lg'
+          : 'border-transparent bg-transparent',
+      ].join(' ')}
+    >
+      <nav aria-label="Principal" className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
+        <Link to="/" aria-label="Leal, inicio" className="flex h-full items-center">
+          <img src={asset('logo-mark.png')} alt="Leal" width={445} height={249} className="h-9 w-auto sm:h-10" />
         </Link>
 
-        <ul className="hidden items-center md:flex">
+        <ul className="hidden items-center gap-1 md:flex">
           {nav.map((item) => (
             <li key={item.to}>
               <NavLink
@@ -47,10 +39,11 @@ export function FloatingNav() {
                 end={item.to === '/'}
                 className={({ isActive }) =>
                   [
-                    'rounded-full px-3.5 py-2 text-sm font-medium transition-colors',
+                    'relative block px-4 py-5 text-sm font-semibold transition-colors',
+                    'after:absolute after:inset-x-4 after:bottom-3 after:h-0.5 after:origin-left after:bg-[var(--accent)] after:transition-transform',
                     isActive
-                      ? 'bg-[var(--accent-subtle)] text-[var(--accent)]'
-                      : 'text-[var(--text-secondary)] hover:text-[var(--foreground)]',
+                      ? 'text-[var(--foreground)] after:scale-x-100'
+                      : 'text-[var(--text-secondary)] after:scale-x-0 hover:text-[var(--foreground)] hover:after:scale-x-100',
                   ].join(' ')
                 }
               >
@@ -60,51 +53,46 @@ export function FloatingNav() {
           ))}
         </ul>
 
-        <div className="ml-1 flex items-center gap-1">
-          <Button size="sm" onClick={() => window.open(youtube.url, '_blank', 'noopener')}>
-            Suscribirme
-          </Button>
-          <Drawer>
-            <DrawerTrigger asChild>
-              <button
-                type="button"
-                aria-label="Abrir menú"
-                className="grid h-9 w-9 place-items-center rounded-full text-[var(--foreground)] hover:bg-[var(--surface-muted)] md:hidden"
-              >
-                <Menu size={20} />
-              </button>
-            </DrawerTrigger>
-            <DrawerContent side="bottom" title="Menú" description="Navega por el sitio">
-              <div className="flex flex-col gap-1 pb-4">
-                {nav.map((item) => (
-                  <DrawerClose key={item.to} asChild>
-                    <button
-                      type="button"
-                      onClick={() => navigate(item.to)}
-                      className="font-display rounded-2xl px-4 py-3 text-left text-xl font-bold uppercase text-[var(--foreground)] hover:bg-[var(--surface-muted)]"
-                    >
-                      {item.label}
-                    </button>
-                  </DrawerClose>
+        <Drawer>
+          <DrawerTrigger asChild>
+            <button
+              type="button"
+              aria-label="Abrir menú"
+              className="grid h-10 w-10 place-items-center rounded-md border border-[var(--border-strong)] text-[var(--foreground)] hover:bg-[var(--surface-muted)] md:hidden"
+            >
+              <Menu size={20} />
+            </button>
+          </DrawerTrigger>
+          <DrawerContent side="bottom" title="Menú" description="Navega por el sitio">
+            <div className="flex flex-col gap-1 pb-4">
+              {nav.map((item) => (
+                <DrawerClose key={item.to} asChild>
+                  <button
+                    type="button"
+                    onClick={() => navigate(item.to)}
+                    className="font-display rounded-md px-4 py-3 text-left text-3xl font-extrabold text-[var(--foreground)] hover:bg-[var(--surface-muted)]"
+                  >
+                    {item.label}
+                  </button>
+                </DrawerClose>
+              ))}
+              <div className="mt-3 flex gap-2 px-2">
+                {socials.map((s) => (
+                  <a
+                    key={s.id}
+                    href={s.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="grid h-11 w-11 place-items-center rounded-md bg-[var(--surface-muted)] text-[var(--foreground)]"
+                  >
+                    <BrandIcon path={s.path} />
+                  </a>
                 ))}
-                <div className="mt-3 flex gap-2 px-2">
-                  {socials.map((s) => (
-                    <a
-                      key={s.id}
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={s.label}
-                      className="grid h-11 w-11 place-items-center rounded-full bg-[var(--surface-muted)] text-[var(--foreground)]"
-                    >
-                      <BrandIcon path={s.path} />
-                    </a>
-                  ))}
-                </div>
               </div>
-            </DrawerContent>
-          </Drawer>
-        </div>
+            </div>
+          </DrawerContent>
+        </Drawer>
       </nav>
     </header>
   )

@@ -2,21 +2,19 @@ import type { ReactNode } from 'react'
 
 interface SectionProps {
   id?: string
-  eyebrow: string
+  /** Se mantiene por compatibilidad: el título ya dice de qué trata la sección. */
+  eyebrow?: string
   title: string
   action?: ReactNode
   children: ReactNode
 }
 
-export function Section({ id, eyebrow, title, action, children }: SectionProps) {
+export function Section({ id, title, action, children }: SectionProps) {
   return (
     <section id={id} className="px-5 py-14">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{eyebrow}</p>
-            <h2 className="font-display mt-1 text-2xl font-bold uppercase sm:text-3xl">{title}</h2>
-          </div>
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-[var(--foreground)] pb-3">
+          <h2 className="font-display text-4xl font-extrabold leading-none sm:text-5xl">{title}</h2>
           {action}
         </div>
         {children}

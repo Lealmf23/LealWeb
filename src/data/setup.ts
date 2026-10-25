@@ -21,6 +21,8 @@ export interface Spec {
 }
 
 export interface SpecGroup {
+  /** Dibujo que acompaña al grupo; el orden de las piezas sigue el de `specs`. */
+  diagram: 'tower' | 'desk'
   eyebrow: string
   title: string
   specs: Spec[]
@@ -28,6 +30,7 @@ export interface SpecGroup {
 
 export const setup: SpecGroup[] = [
   {
+    diagram: 'tower',
     eyebrow: 'Torre / Hardware',
     title: 'Componentes de la PC',
     specs: [
@@ -42,6 +45,7 @@ export const setup: SpecGroup[] = [
     ],
   },
   {
+    diagram: 'desk',
     eyebrow: 'Pantalla / Controles / Audio',
     title: 'Monitor y periféricos',
     specs: [

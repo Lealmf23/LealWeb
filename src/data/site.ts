@@ -1,10 +1,11 @@
-import { siDiscord, siInstagram, siSteam, siTiktok, siYoutube } from 'simple-icons'
+import { siDiscord, siInstagram, siKofi, siSteam, siTiktok, siYoutube } from 'simple-icons'
 
 export const socials = [
   { id: 'youtube', label: 'YouTube', handle: '@lealmafor', url: 'https://www.youtube.com/@lealmafor?sub_confirmation=1', path: siYoutube.path },
   { id: 'instagram', label: 'Instagram', handle: '@LealMafor', url: 'https://www.instagram.com/LealMafor', path: siInstagram.path },
   { id: 'tiktok', label: 'TikTok', handle: '@lealmafor', url: 'https://www.tiktok.com/@lealmafor', path: siTiktok.path },
   { id: 'discord', label: 'Discord', handle: 'Comunidad', url: 'https://discord.gg/aBYyh5makp', path: siDiscord.path },
+  { id: 'kofi', label: 'Ko-fi', handle: 'Apoya el canal', url: 'https://ko-fi.com/lealmafor', path: siKofi.path },
   { id: 'steam', label: 'Steam', handle: 'LealMafor', url: 'https://steamcommunity.com/id/LealMafor', path: siSteam.path },
 ] as const
 

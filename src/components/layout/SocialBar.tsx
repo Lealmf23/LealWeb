@@ -13,7 +13,7 @@ export function SocialBar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${s.label}: ${s.handle}`}
-              className="flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] py-2 pl-3 pr-4 text-sm font-medium text-[var(--text-secondary)] transition-all hover:-translate-y-0.5 hover:border-[var(--accent)] hover:text-[var(--accent)]"
+              className="flex items-center gap-2 rounded-md border border-[var(--border-strong)] bg-[var(--surface)] py-2 pl-3 pr-4 text-sm font-medium text-[var(--text-secondary)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
             >
               <BrandIcon path={s.path} size={18} />
               {s.label}

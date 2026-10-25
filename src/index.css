@@ -1,17 +1,35 @@
 @import "tailwindcss";
 
-/* Identidad "plano urbano": azul de mapa + cian del río del logo. */
+/* Identidad "plano de ciudad": navy de plano, río cian y los colores de zonificación del juego. */
 :root {
-  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-body: "Public Sans", system-ui, sans-serif;
+
+  --zone-residencial: #4c9f5e;
+  --zone-industrial: #e0a82e;
+  --zone-comercial: #2d6fd6;
+  --zone-oficina: #2aa6a0;
+  --traffic: #d93f3a;
+
+  /* Esquinas de plano: casi rectas. */
+  --radius-control: .375rem;
+  --radius-panel: .5rem;
+  --radius-surface: .75rem;
 }
 :root[data-theme="dark"] {
-  --background: oklch(16.5% 0.02 255);
-  --surface: oklch(20% 0.022 255);
-  --surface-raised: oklch(23% 0.024 255);
-  --surface-muted: oklch(26% 0.025 255);
-  --border: oklch(30% 0.025 255);
-  --border-subtle: oklch(25% 0.022 255);
+  /* Paleta del logo: navy del plano, bloques azules, calles gris azulado y el río cian. */
+  --background: #011225;
+  --surface: #071b33;
+  --surface-raised: #0c2644;
+  --surface-muted: #113353;
+  --foreground: #f4f8fb;
+  --text-secondary: #b4c6d6;
+  --text-muted: #8aa2b8;
+  --border: #173a5e;
+  --border-subtle: #0f2a47;
+  --border-strong: #4a6a88;
+  --shadow-raised: 0 6px 18px rgb(0 0 0 / .35);
+  --shadow-floating: 0 14px 36px rgb(0 0 0 / .5);
 }
 
 html { scroll-behavior: smooth; }
@@ -20,38 +38,60 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
-  line-height: var(--leading-body);
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Cuadrícula de plano de ciudad, con viñeta hacia los bordes. */
+/* Retícula de manzanas de plano, con desvanecido hacia los bordes. */
 .city-grid {
   background-image:
-    linear-gradient(to right, color-mix(in oklab, var(--accent) 7%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklab, var(--accent) 7%, transparent) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 100%);
+    linear-gradient(to right, color-mix(in oklab, var(--accent) 9%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--accent) 9%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, #000 40%, transparent 100%);
 }
 
 .font-display { font-family: var(--font-display); letter-spacing: 0; }
 
-
-/* Acento propio "leal": el cian del río en el logo. */
 :root[data-accent="leal"] {
-  --accent: #0a8fd6;
-  --accent-strong: #066aa0;
-  --accent-subtle: rgb(10 143 214 / .14);
-  --accent-foreground: #ffffff;
-  --control-on: #0a8fd6;
-  --control-thumb-on: #fff;
-  --control-glyph: #fff;
+  --accent: #1ab2fc;
+  --accent-strong: #7fd3ff;
+  --accent-subtle: rgb(26 178 252 / .16);
+  --accent-foreground: #011225;
+  --control-on: #1ab2fc;
+  --control-thumb-on: #011225;
+  --control-glyph: #011225;
 }
-:root[data-theme="dark"][data-accent="leal"] {
-  --accent: #19b5ff;
-  --accent-strong: #8bd8ff;
-  --accent-subtle: rgb(25 181 255 / .18);
-  --accent-foreground: #04121c;
-  --control-on: #19b5ff;
-  --control-thumb-on: #04121c;
-  --control-glyph: #04121c;
+
+/* Línea de metro del héroe: se traza una sola vez al cargar y las estaciones aparecen en cadena. */
+.line-rail {
+  transform-origin: top;
+  animation: rail-draw 900ms var(--ease-enter) both;
 }
+.line-station {
+  animation: station-in 420ms var(--ease-enter) both;
+  animation-delay: calc(250ms + var(--i, 0) * 170ms);
+}
+@keyframes rail-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes station-in { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .line-rail, .line-station { animation: none; }
+}
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Esquemas del setup: cada pieza se ilumina cuando está activa. */
+.bp-part { cursor: pointer; outline: none; }
+.bp-part > * {
+  fill: var(--surface-raised);
+  stroke: var(--border-strong);
+  stroke-width: 2;
+  transition: fill 160ms, stroke 160ms, filter 160ms;
+}
+.bp-part:hover > *, .bp-part[data-active="true"] > * {
+  fill: var(--accent-subtle);
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--accent) 70%, transparent));
+}
+.bp-part:focus-visible > * { stroke: var(--foreground); }
+.bp-detail { fill: none; stroke: var(--border); stroke-width: 1.5; }

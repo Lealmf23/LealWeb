@@ -1,74 +1,88 @@
 import { useNavigate } from 'react-router-dom'
 import { Play } from 'lucide-react'
 import { Button } from '@/components/arc/button/button'
-import { TextReveal } from '@/components/arc/text-reveal/text-reveal'
 import { formatDate, formatViews, videos } from '@/data/videos'
+import { Backdrop } from './Backdrop'
 import { SocialBar } from './SocialBar'
-import { asset } from '@/lib/utils'
 
 export function Hero() {
   const navigate = useNavigate()
-  const latest = videos[0]
+  const stations = videos.slice(0, 4)
+  const latest = stations[0]
 
   return (
-    <section className="relative isolate overflow-hidden px-5 pb-8 pt-28 sm:pt-32">
-      <img
-        src={asset('hero.jpg')}
-        alt=""
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-[center_70%]"
-        fetchPriority="high"
-      />
-      <div
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,color-mix(in_oklab,var(--background)_80%,transparent)_0%,color-mix(in_oklab,var(--background)_45%,transparent)_55%,color-mix(in_oklab,var(--background)_10%,transparent)_100%),linear-gradient(to_top,var(--background)_0%,transparent_30%)]"
-        aria-hidden="true"
-      />
-      <div className="mx-auto grid max-w-6xl items-end gap-8 lg:grid-cols-[1.4fr_1fr]">
-        <div>
-          <h1 className="sr-only">Construimos ciudades. Rompemos el tráfico. Lo intentamos de nuevo.</h1>
-          <div
-            className="font-display text-[clamp(1.6rem,3.6vw,2.6rem)] font-bold uppercase leading-[1.05]"
-            aria-hidden="true"
-          >
-            <TextReveal as="p" text="Construimos ciudades." />
-            <TextReveal as="p" text="Rompemos el tráfico." className="text-[var(--accent)]" delay={0.2} />
-            <TextReveal as="p" text="Lo intentamos de nuevo." delay={0.4} />
-          </div>
-          <div className="mt-5 flex flex-wrap gap-2.5">
+    <section className="relative isolate overflow-hidden px-5 pb-10 pt-24 sm:pt-28">
+      <Backdrop src="hero.jpg" position="center 70%" veil={0.7} eager />
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
+        <div className="min-w-0">
+          <h1 className="font-display text-[clamp(2rem,7.5vw,3.5rem)] sm:text-[clamp(2.25rem,4.8vw,4rem)] font-black leading-[0.95]">
+            <span className="block">Construimos ciudades.</span>
+            <span className="block">Rompemos el tráfico.</span>
+            <span className="block">Lo intentamos de nuevo.</span>
+          </h1>
+          <p className="mt-4 max-w-md text-base text-[var(--text-secondary)]">
+            Cities: Skylines en español: series, mods y consejos para que tu ciudad no se atasque.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
             {latest && (
               <Button onClick={() => window.open(latest.url, '_blank', 'noopener')}>
-                <Play size={14} aria-hidden="true" /> Ver último episodio
+                <Play size={14} aria-hidden="true" /> Ver el último video
               </Button>
             )}
             <Button variant="secondary" onClick={() => navigate('/videos')}>
-              Explorar videos
+              Ver todos los videos
             </Button>
           </div>
-          <div className="mt-6">
+          <div className="mt-5">
             <SocialBar />
           </div>
         </div>
 
-        {latest && (
-          <a
-            href={latest.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex max-w-sm gap-3 rounded-[var(--radius-panel)] border border-[var(--border)] bg-[color-mix(in_oklab,var(--surface)_85%,transparent)] p-2.5 backdrop-blur-md transition-transform hover:-translate-y-0.5 lg:ml-auto"
-          >
-            <img
-              src={latest.thumbnail}
-              alt=""
-              className="aspect-video w-32 shrink-0 rounded-xl object-cover"
-            />
-            <div className="min-w-0 self-center">
-              <p className="text-[0.7rem] font-semibold uppercase tracking-wider text-[var(--accent)]">Último video</p>
-              <p className="line-clamp-2 text-sm font-semibold leading-snug text-[var(--foreground)]">{latest.title}</p>
-              <p className="mt-0.5 text-xs text-[var(--text-muted)]">
-                {formatDate(latest.published)} · {formatViews(latest.views)}
-              </p>
-            </div>
-          </a>
-        )}
+        <nav aria-label="Últimos videos" className="relative min-w-0 pl-10">
+          <span
+            className="line-rail absolute bottom-3 left-[11px] top-3 w-2 rounded-full bg-[var(--accent)]"
+            aria-hidden="true"
+          />
+          <span
+            className="line-rail absolute left-[11px] top-3 h-16 w-2 rounded-full bg-[var(--traffic)]"
+            aria-hidden="true"
+          />
+          <ol className="space-y-4">
+            {stations.map((video, i) => (
+              <li key={video.id} className="line-station relative" style={{ ['--i' as string]: i }}>
+                <span
+                  className={[
+                    'absolute top-1 rounded-full border-[3px] border-[var(--foreground)] bg-[var(--background)]',
+                    i === 0 ? '-left-[39px] h-7 w-7' : '-left-[35px] h-5 w-5',
+                  ].join(' ')}
+                  aria-hidden="true"
+                />
+                <a href={video.url} target="_blank" rel="noopener noreferrer" className="group block">
+                  {i === 0 && (
+                    <img
+                      src={video.thumbnail}
+                      alt=""
+                      className="mb-2 aspect-video w-full max-w-sm rounded-[var(--radius-panel)] border-2 border-[var(--foreground)] object-cover"
+                      fetchPriority="high"
+                    />
+                  )}
+                  <p className="text-sm text-[var(--text-muted)]">
+                    {i === 0 ? 'Último video · ' : ''}
+                    {formatDate(video.published)} · {formatViews(video.views)}
+                  </p>
+                  <p
+                    className={[
+                      'font-display font-extrabold leading-tight underline-offset-4 group-hover:underline',
+                      i === 0 ? 'text-2xl' : 'text-lg',
+                    ].join(' ')}
+                  >
+                    {video.title}
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
       </div>
     </section>
   )
