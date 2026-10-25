@@ -7,12 +7,25 @@ import { AboutPage } from '@/pages/AboutPage'
 import { ResourcesPage } from '@/pages/ResourcesPage'
 import { SetupPage } from '@/pages/SetupPage'
 import { VideosPage } from '@/pages/VideosPage'
+import { initOutboundTracking, trackPageView } from '@/lib/analytics'
+import { applySeo } from '@/lib/seo'
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
     if (!hash) window.scrollTo(0, 0)
   }, [pathname, hash])
+
+  // Una página vista por ruta; los cambios de #ancla dentro de la misma página no cuentan.
+  // El título se actualiza antes, para que Analytics registre el de la página nueva.
+  useEffect(() => {
+    applySeo(pathname)
+    trackPageView(pathname)
+  }, [pathname])
+
+  useEffect(() => {
+    initOutboundTracking()
+  }, [])
   return null
 }
 

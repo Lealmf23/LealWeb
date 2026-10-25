@@ -1,0 +1,64 @@
+{
+  "site": {
+    "url": "https://lealmafor.com",
+    "name": "Leal",
+    "locale": "es_ES",
+    "image": "/og-image.jpg",
+    "imageAlt": "Logo de Leal sobre un plano de ciudad con un río azul"
+  },
+  "routes": {
+    "/": {
+      "title": "Leal | Cities: Skylines y Cities: Skylines 2 en español",
+      "description": "Series, mods, assets y consejos de Cities: Skylines 2 en español. Construimos ciudades, rompemos el tráfico y lo intentamos de nuevo.",
+      "keywords": "Cities Skylines 2, Cities Skylines, city builder, mods Cities Skylines 2, assets CS2, gameplay en español, Leal, LealMafor"
+    },
+    "/videos": {
+      "title": "Videos y series de Cities: Skylines 2 | Leal",
+      "description": "Las series y listas de reproducción del canal: construcción de ciudades desde cero, tráfico, economía y novedades de Cities: Skylines 2.",
+      "keywords": "videos Cities Skylines 2, serie Cities Skylines 2, tutoriales Cities Skylines, gameplay en español, listas de reproducción"
+    },
+    "/recursos": {
+      "title": "Mods, assets y mapas para Cities: Skylines 2 | Leal",
+      "description": "Mis mods y assets para Cities: Skylines 2 en Paradox Mods, mi lista de mods (playset), creaciones de Steam Workshop y mapas para empezar tu ciudad.",
+      "keywords": "mods Cities Skylines 2, assets CS2, playset Cities Skylines 2, Paradox Mods, Steam Workshop, mapas Cities Skylines"
+    },
+    "/setup": {
+      "title": "Mi setup: PC y periféricos para jugar y crear contenido | Leal",
+      "description": "El equipo detrás del canal: Ryzen 9 7900X, RTX 5070, 64 GB de RAM, monitor de 34 pulgadas y los periféricos que uso para jugar y grabar.",
+      "keywords": "setup gamer, PC para Cities Skylines 2, Ryzen 9 7900X, RTX 5070, periféricos, equipo para crear contenido"
+    },
+    "/sobre-mi": {
+      "title": "Sobre Leal: contenido de Cities: Skylines en español",
+      "description": "Gameplays, tutoriales, noticias y transmisiones sobre Cities: Skylines y juegos de gestión, desde Argentina. Conoce el canal y cómo contactarme.",
+      "keywords": "Leal, LealMafor, canal de Cities Skylines, YouTuber Cities Skylines en español, contacto"
+    },
+    "/juegos": {
+      "title": "Juegos del canal | Leal",
+      "description": "Los juegos que construimos en el canal: Cities: Skylines 2, Cities: Skylines y otros simuladores y city builders.",
+      "keywords": "juegos de gestión, city builders, Cities Skylines 2, Cities Skylines",
+      "index": false
+    },
+    "/juegos/cities-skylines-2": {
+      "title": "Cities: Skylines 2 | Leal",
+      "description": "La serie principal del canal: ciudades desde cero, tráfico y economía en Cities: Skylines 2.",
+      "keywords": "Cities Skylines 2, serie Cities Skylines 2",
+      "index": false
+    },
+    "/juegos/cities-skylines": {
+      "title": "Cities: Skylines | Leal",
+      "description": "Nuestra serie clásica de principiantes y los mejores consejos de Cities: Skylines.",
+      "keywords": "Cities Skylines, consejos Cities Skylines, serie para principiantes",
+      "index": false
+    },
+    "/juegos/otros-juegos": {
+      "title": "Otros juegos | Leal",
+      "description": "Otros simuladores y city builders que probamos en el canal.",
+      "keywords": "simuladores, city builders, juegos de gestión",
+      "index": false
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada | Leal",
+    "description": "Esta página no existe. Vuelve al inicio para ver los últimos videos de Leal."
+  }
+}
