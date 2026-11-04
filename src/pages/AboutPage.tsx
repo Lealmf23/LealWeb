@@ -1,6 +1,6 @@
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Mail } from 'lucide-react'
-import { Button } from '@/components/arc/button/button'
+import { ButtonLink } from '@/components/layout/ButtonLink'
 import { SocialBar } from '@/components/layout/SocialBar'
 import { Section } from '@/components/layout/Section'
 import { socials } from '@/data/site'
@@ -49,7 +49,7 @@ export function AboutPage() {
               También podés sumarte al servidor de Discord para compartir con la comunidad.
             </p>
           </div>
-          <Button onClick={() => window.open(discord.url, '_blank', 'noopener')}>Unirme al Discord</Button>
+          <ButtonLink href={discord.url}>Unirme al Discord</ButtonLink>
         </div>
       </Section>
     </div>

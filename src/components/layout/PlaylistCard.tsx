@@ -1,16 +1,11 @@
 import { ListVideo } from 'lucide-react'
-import { Card } from '@/components/arc/card/card'
+import { CompactCard } from '@/components/layout/CompactCard'
 import type { Playlist } from '@/data/playlists'
-
-/** Título a 2 líneas máximo, tipografía y márgenes compactos. */
-const compact =
-  'h-full [&_h3]:line-clamp-2 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:leading-snug [&_p]:mt-1 [&_p]:max-w-none [&_p]:text-xs [&_[class*=_content_]]:p-3'
 
 export function PlaylistCard({ playlist }: { playlist: Playlist }) {
   return (
     <a href={playlist.url} target="_blank" rel="noopener noreferrer" className="block h-full">
-      <Card
-        className={compact}
+      <CompactCard
         title={playlist.title}
         description={`${playlist.count} ${playlist.count === 1 ? 'video' : 'videos'}`}
         media={

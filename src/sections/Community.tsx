@@ -1,4 +1,4 @@
-import { Button } from '@/components/arc/button/button'
+import { ButtonLink } from '@/components/layout/ButtonLink'
 import { Backdrop } from '@/components/layout/Backdrop'
 import { Section } from '@/components/layout/Section'
 import { socials } from '@/data/site'
@@ -17,24 +17,18 @@ export function Community() {
           Contenido nuevo cada semana. Sumate al Discord, compartí tu ciudad y, si te gusta el contenido, podés apoyar el canal en Ko-fi.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Button
+          <ButtonLink
+            href={discord.url}
             className="!border-[var(--accent)] !bg-[var(--accent)] !text-[var(--accent-foreground)]"
-            onClick={() => window.open(discord.url, '_blank', 'noopener')}
           >
             Unirme al Discord
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => window.open(youtube.url, '_blank', 'noopener')}
-          >
+          </ButtonLink>
+          <ButtonLink variant="secondary" href={youtube.url}>
             Suscribirme
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => window.open(links.kofi, '_blank', 'noopener')}
-          >
+          </ButtonLink>
+          <ButtonLink variant="secondary" href={links.kofi}>
             Apoyar en Ko-fi
-          </Button>
+          </ButtonLink>
         </div>
       </div>
       </Section>

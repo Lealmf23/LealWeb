@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+import { Badge } from '@/components/arc/badge/badge'
 import { Backdrop } from '@/components/layout/Backdrop'
 import { Section } from '@/components/layout/Section'
 import { games } from '@/data/site'
@@ -18,14 +19,9 @@ export function Games() {
             >
               <h3 className="font-display text-4xl font-extrabold leading-none sm:text-5xl">{game.title}</h3>
               <p className="max-w-md text-[var(--text-secondary)]">
-                <span
-                  className={[
-                    'mr-2 rounded px-1.5 py-0.5 text-sm font-semibold',
-                    i === 0 ? 'bg-[var(--accent)] text-[var(--accent-foreground)]' : 'bg-[var(--surface-muted)]',
-                  ].join(' ')}
-                >
+                <Badge tone={i === 0 ? 'info' : 'neutral'} className="mr-2 align-middle">
                   {game.tag}
-                </span>
+                </Badge>
                 {game.description}
               </p>
               <ArrowUpRight

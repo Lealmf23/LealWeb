@@ -2,7 +2,7 @@ import { PageHeader } from '@/components/layout/PageHeader'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
-import { Button } from '@/components/arc/button/button'
+import { ButtonLink } from '@/components/layout/ButtonLink'
 import { Section } from '@/components/layout/Section'
 import { WorkshopCard } from '@/components/layout/WorkshopCard'
 import { paradoxAssets } from '@/data/paradox'
@@ -19,9 +19,9 @@ function LinkPanel({ title, text, href, cta }: { title: string; text: string; hr
         <p className="font-semibold">{title}</p>
         <p className="mt-1 text-sm text-[var(--text-secondary)]">{text}</p>
       </div>
-      <Button variant="secondary" onClick={() => window.open(href, '_blank', 'noopener')}>
+      <ButtonLink variant="secondary" href={href}>
         {cta} <ArrowUpRight size={16} aria-hidden="true" />
-      </Button>
+      </ButtonLink>
     </div>
   )
 }
@@ -69,9 +69,9 @@ export function ResourcesPage() {
           ))}
         </div>
         <div className="mt-6">
-          <Button variant="secondary" onClick={() => window.open(links.paradoxCs2, '_blank', 'noopener')}>
+          <ButtonLink variant="secondary" href={links.paradoxCs2}>
             Ver todo en Paradox Mods <ArrowUpRight size={16} aria-hidden="true" />
-          </Button>
+          </ButtonLink>
         </div>
         <div className="mt-10">
           <Subheading>Cities: Skylines</Subheading>
@@ -81,9 +81,9 @@ export function ResourcesPage() {
             ))}
           </div>
           <div className="mt-6">
-            <Button variant="secondary" onClick={() => window.open(links.steamCs1, '_blank', 'noopener')}>
+            <ButtonLink variant="secondary" href={links.steamCs1}>
               Ver todo en Steam Workshop <ArrowUpRight size={16} aria-hidden="true" />
-            </Button>
+            </ButtonLink>
           </div>
         </div>
       </Section>

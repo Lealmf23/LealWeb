@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { Reveal } from './Reveal'
 
 interface SectionProps {
   id?: string
@@ -12,13 +13,13 @@ interface SectionProps {
 export function Section({ id, title, action, children }: SectionProps) {
   return (
     <section id={id} className="px-5 py-14">
-      <div className="mx-auto max-w-6xl">
+      <Reveal className="mx-auto max-w-6xl">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4 border-b-2 border-[var(--foreground)] pb-3">
           <h2 className="font-display text-4xl font-extrabold leading-none sm:text-5xl">{title}</h2>
           {action}
         </div>
         {children}
-      </div>
+      </Reveal>
     </section>
   )
 }
