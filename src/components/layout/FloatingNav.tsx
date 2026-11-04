@@ -63,20 +63,21 @@ export function FloatingNav() {
               <Menu size={20} />
             </button>
           </DrawerTrigger>
-          <DrawerContent side="bottom" title="Menú" description="Navega por el sitio">
-            <div className="flex flex-col gap-1 pb-4">
+          {/* Espaciado reducido (--space-6) para que el menú entre completo, sin scroll, en pantallas bajas. */}
+          <DrawerContent side="bottom" title="Menú" description="Navega por el sitio" className="[--space-6:1rem]">
+            <div className="flex flex-col gap-0.5 pb-1">
               {nav.map((item) => (
                 <DrawerClose key={item.to} asChild>
                   <button
                     type="button"
                     onClick={() => navigate(item.to)}
-                    className="font-display rounded-md px-4 py-3 text-left text-3xl font-extrabold text-[var(--foreground)] hover:bg-[var(--surface-muted)]"
+                    className="font-display rounded-md px-4 py-2 text-left text-2xl font-extrabold text-[var(--foreground)] hover:bg-[var(--surface-muted)]"
                   >
                     {item.label}
                   </button>
                 </DrawerClose>
               ))}
-              <div className="mt-3 flex gap-2 px-2">
+              <div className="mt-2 flex gap-2 px-2">
                 {socials.map((s) => (
                   <a
                     key={s.id}
@@ -84,7 +85,7 @@ export function FloatingNav() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="grid h-11 w-11 place-items-center rounded-md bg-[var(--surface-muted)] text-[var(--foreground)]"
+                    className="grid h-10 w-10 place-items-center rounded-md bg-[var(--surface-muted)] text-[var(--foreground)]"
                   >
                     <BrandIcon path={s.path} />
                   </a>
