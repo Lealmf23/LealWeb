@@ -80,22 +80,6 @@ body {
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* Esquemas del setup: cada pieza se ilumina cuando está activa. */
-.bp-part { cursor: pointer; outline: none; }
-.bp-part > * {
-  fill: var(--surface-raised);
-  stroke: var(--border-strong);
-  stroke-width: 2;
-  transition: fill 160ms, stroke 160ms, filter 160ms;
-}
-.bp-part:hover > *, .bp-part[data-active="true"] > * {
-  fill: var(--accent-subtle);
-  stroke: var(--accent);
-  filter: drop-shadow(0 0 5px color-mix(in oklab, var(--accent) 70%, transparent));
-}
-.bp-part:focus-visible > * { stroke: var(--foreground); }
-.bp-detail { fill: none; stroke: var(--border); stroke-width: 1.5; }
-
 /* Card de UIArc en versión compacta: el padding de .content sale de --space-5, así que se acorta aquí sin depender de clases internas. */
 .card-compact { --space-5: .75rem; height: 100%; }
 .card-compact h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: .875rem; font-weight: 600; line-height: 1.35; }

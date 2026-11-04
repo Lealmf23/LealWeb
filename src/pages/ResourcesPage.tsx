@@ -45,20 +45,12 @@ export function ResourcesPage() {
       />
 
       <Section id="mods" eyebrow="Recursos" title="Mods">
-        <div className="grid gap-4 lg:grid-cols-2">
-          <LinkPanel
-            title="Mi lista de mods de Cities: Skylines 2"
-            text="El playset que uso en el canal: suscríbete y juega con los mismos mods."
-            href={links.playsetCs2}
-            cta="Ver lista"
-          />
-          <LinkPanel
-            title="Mis creaciones en Paradox Mods"
-            text="Mods y assets que publico para Cities: Skylines 2, en mi perfil de autor."
-            href={links.paradoxProfile}
-            cta="Ver perfil"
-          />
-        </div>
+        <LinkPanel
+          title="Mi lista de mods de Cities: Skylines 2"
+          text="El playset que uso en el canal: suscríbete y juega con los mismos mods."
+          href={links.playsetCs2}
+          cta="Ver lista"
+        />
       </Section>
 
       <Section id="assets" eyebrow="Recursos" title="Assets">

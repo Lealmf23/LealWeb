@@ -1,6 +1,7 @@
 // Lee las listas de reproducción públicas del canal y las guarda en src/data/playlists.json.
 // Se ejecuta antes de cada build (prebuild). Si falla, conserva el JSON anterior.
 import { readFile, writeFile } from 'node:fs/promises'
+import { fetchRetry, warnBuild } from './lib/net.mjs'
 
 const HANDLE = 'LealMafor'
 const URL_PLAYLISTS = `https://www.youtube.com/@${HANDLE}/playlists?view=1&sort=dd&shelf_id=6`
@@ -44,20 +45,19 @@ function parse(html) {
 }
 
 try {
-  const res = await fetch(URL_PLAYLISTS, {
+  const res = await fetchRetry(URL_PLAYLISTS, {
     headers: {
       'user-agent': 'Mozilla/5.0',
       'accept-language': 'es-AR,es;q=0.9',
       cookie: 'CONSENT=YES+1; SOCS=CAI',
     },
   })
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const playlists = parse(await res.text()).filter((p) => p.title && p.count > 0)
   if (!playlists.length) throw new Error('sin listas')
   await writeFile(OUT, JSON.stringify(playlists, null, 2) + '\n')
   console.log(`[playlists] ${playlists.length} listas guardadas`)
 } catch (err) {
-  console.warn(`[playlists] no se pudo actualizar (${err.message}); se conserva el archivo existente`)
+  warnBuild('playlists', `no se pudo actualizar (${err.message}); se conserva el archivo existente`)
   try {
     await readFile(OUT)
   } catch {

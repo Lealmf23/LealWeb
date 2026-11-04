@@ -17,12 +17,6 @@ export const nav = [
   { to: '/sobre-mi', label: 'Sobre mí' },
 ] as const
 
-export const games = [
-  { slug: 'cities-skylines-2', title: 'Cities: Skylines 2', description: 'La serie principal del canal: ciudades desde cero, tráfico y economía.', tag: 'Serie actual' },
-  { slug: 'cities-skylines', title: 'Cities: Skylines', description: 'Nuestra serie clásica de principiantes y los mejores consejos.', tag: 'Clásico' },
-  { slug: 'otros-juegos', title: 'Otros juegos', description: 'Otros simuladores y city builders que probamos en el canal.', tag: 'Variado' },
-] as const
-
 export const resources = [
   { slug: 'mods', to: '/recursos#mods', title: 'Mods', description: 'Mis mods y creaciones para Cities: Skylines 2.' },
   { slug: 'assets', to: '/recursos#assets', title: 'Assets', description: 'Edificios, props y creaciones para tu ciudad.' },

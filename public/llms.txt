@@ -2,11 +2,13 @@
 
 > Canal y sitio de Leal (LealMafor), creador de contenido en español sobre Cities: Skylines 2 y Cities: Skylines, desde Argentina. Series de construcción de ciudades, tutoriales, mods, assets, mapas y noticias de city builders.
 
-El sitio se actualiza cada día con los últimos videos de YouTube, las listas de reproducción y las publicaciones de Paradox Mods y Steam Workshop.
+Los videos, las listas de reproducción y las publicaciones de Paradox Mods y Steam Workshop se actualizan automáticamente desde sus fuentes.
+
+Todo el contenido del sitio en un solo texto: [llms-full.txt](https://lealmafor.com/llms-full.txt).
 
 ## Páginas
 
-- [Inicio](https://lealmafor.com/): últimos videos, juegos del canal, recursos y comunidad.
+- [Inicio](https://lealmafor.com/): últimos videos, recursos y comunidad.
 - [Videos](https://lealmafor.com/videos/): series y listas de reproducción, agrupadas por juego.
 - [Recursos](https://lealmafor.com/recursos/): mis mods y assets para Cities: Skylines 2 (Paradox Mods), mi lista de mods (playset), creaciones de Steam Workshop y mapas.
 - [Setup](https://lealmafor.com/setup/): la PC y los periféricos que uso para jugar y grabar.

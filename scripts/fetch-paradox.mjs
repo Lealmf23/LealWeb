@@ -4,6 +4,7 @@
 // Si una publicación falla, conserva el dato anterior de esa publicación.
 import { readFile, writeFile } from 'node:fs/promises'
 import https from 'node:https'
+import { warnBuild } from './lib/net.mjs'
 
 const IDS_FILE = new URL('../src/data/paradox-ids.json', import.meta.url)
 const OUT = new URL('../src/data/paradox.json', import.meta.url)
@@ -98,7 +99,7 @@ if (result.length) {
   await writeFile(OUT, JSON.stringify(result, null, 2) + '\n')
   console.log(`[paradox] ${result.length}/${ids.length} publicaciones guardadas`)
 } else {
-  console.warn('[paradox] sin resultados; se conserva el archivo existente')
+  warnBuild('paradox', 'sin resultados; se conserva el archivo existente')
   try {
     await readFile(OUT)
   } catch {

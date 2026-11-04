@@ -1,6 +1,7 @@
 // Lee tus publicaciones del Workshop de Steam (Cities: Skylines) y las guarda en src/data/workshop.json.
 // Se ejecuta antes de cada build (prebuild). Si falla, conserva el JSON anterior.
 import { readFile, writeFile } from 'node:fs/promises'
+import { fetchRetry, warnBuild } from './lib/net.mjs'
 
 const PROFILE = 'lealmafor'
 const OUT = new URL('../src/data/workshop.json', import.meta.url)
@@ -45,8 +46,7 @@ try {
   const all = []
   const seen = new Set()
   for (let page = 1; page <= MAX_PAGES; page++) {
-    const res = await fetch(`https://steamcommunity.com/id/${PROFILE}/myworkshopfiles/?p=${page}`, { headers })
-    if (!res.ok) throw new Error(`HTTP ${res.status} en la página ${page}`)
+    const res = await fetchRetry(`https://steamcommunity.com/id/${PROFILE}/myworkshopfiles/?p=${page}`, { headers })
     const items = parsePage(await res.text()).filter((i) => !seen.has(i.id))
     if (!items.length) break
     items.forEach((i) => seen.add(i.id))
@@ -56,7 +56,7 @@ try {
   await writeFile(OUT, JSON.stringify(all, null, 2) + '\n')
   console.log(`[workshop] ${all.length} publicaciones guardadas`)
 } catch (err) {
-  console.warn(`[workshop] no se pudo actualizar (${err.message}); se conserva el archivo existente`)
+  warnBuild('workshop', `no se pudo actualizar (${err.message}); se conserva el archivo existente`)
   try {
     await readFile(OUT)
   } catch {

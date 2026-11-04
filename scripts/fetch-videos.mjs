@@ -1,6 +1,7 @@
 // Descarga el feed RSS del canal y lo guarda en src/data/videos.json.
 // Se ejecuta antes de cada build (prebuild). Si falla, conserva el JSON anterior.
 import { readFile, writeFile } from 'node:fs/promises'
+import { fetchRetry, warnBuild } from './lib/net.mjs'
 
 const CHANNEL_ID = 'UCeSb0ceImyAo9G3wSakXaeA'
 const FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`
@@ -11,8 +12,7 @@ const decode = (s) =>
 const pick = (block, re) => decode(block.match(re)?.[1]?.trim() ?? '')
 
 try {
-  const res = await fetch(FEED)
-  if (!res.ok) throw new Error(`HTTP ${res.status}`)
+  const res = await fetchRetry(FEED, {}, 12) // el feed de YouTube falla al azar (404/500): se reintenta
   const xml = await res.text()
   const videos = [...xml.matchAll(/<entry>([\s\S]*?)<\/entry>/g)].map(([, e]) => {
     const id = pick(e, /<yt:videoId>(.*?)<\/yt:videoId>/)
@@ -29,6 +29,6 @@ try {
   await writeFile(OUT, JSON.stringify(videos, null, 2) + '\n')
   console.log(`[videos] ${videos.length} videos guardados`)
 } catch (err) {
-  console.warn(`[videos] no se pudo actualizar (${err.message}); se conserva el archivo existente`)
+  warnBuild('videos', `no se pudo actualizar (${err.message}); se conserva el archivo existente`)
   try { await readFile(OUT) } catch { await writeFile(OUT, '[]\n') }
 }

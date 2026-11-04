@@ -1,4 +1,5 @@
 import raw from './workshop.json'
+import linksRaw from './links.json'
 
 export interface WorkshopItem {
   id: string
@@ -17,10 +18,5 @@ const isMap = (item: WorkshopItem) => /\bmap(a|as|s)?\b|savegame/i.test(item.tit
 export const workshopMaps = items.filter(isMap)
 export const workshopAssets = items.filter((item) => !isMap(item))
 
-export const links = {
-  paradoxCs2: 'https://mods.paradoxplaza.com/authors/lealmafor/cities_skylines_2',
-  paradoxProfile: 'https://mods.paradoxplaza.com/authors/lealmafor',
-  playsetCs2: 'https://mods.paradoxplaza.com/playsets/cities_skylines_2/4421189',
-  kofi: 'https://ko-fi.com/lealmafor',
-  steamCs1: 'https://steamcommunity.com/id/lealmafor/myworkshopfiles/?p=1',
-} as const
+/** Enlaces externos; viven en links.json para que el script de SEO también los lea. */
+export const links = linksRaw
