@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, ChevronDown } from 'lucide-react'
+import { Carousel } from '@/components/arc/carousel/carousel'
+import { Badge, type BadgeTone } from '@/components/arc/badge/badge'
+import { Button } from '@/components/arc/button/button'
 import { ButtonLink } from '@/components/layout/ButtonLink'
 import { GiscusComments } from '@/components/layout/GiscusComments'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -19,6 +22,9 @@ const ui: Record<
   {
     description: string
     statusLabel: string
+    lastUpdate: string
+    commentsNote: string
+    commentsCta: string
     videoTitle: string
     featuresTitle: string
     logTitle: string
@@ -38,6 +44,9 @@ const ui: Record<
   es: {
     description: 'El addon de Blender para crear assets de Cities: Skylines 2. Registro de avances, comentarios y sugerencias.',
     statusLabel: 'Estado',
+    lastUpdate: 'Última actualización',
+    commentsNote: 'Al final de la página podés dejar tus comentarios y sugerencias.',
+    commentsCta: 'Dejar un comentario',
     videoTitle: 'Video del addon',
     featuresTitle: 'Qué hace',
     logTitle: 'Registro de avances',
@@ -56,6 +65,9 @@ const ui: Record<
   en: {
     description: 'The Blender addon for creating Cities: Skylines 2 assets. Progress log, comments and suggestions.',
     statusLabel: 'Status',
+    lastUpdate: 'Last update',
+    commentsNote: 'At the bottom of the page you can leave your comments and suggestions.',
+    commentsCta: 'Leave a comment',
     videoTitle: 'Addon video',
     featuresTitle: 'What it does',
     logTitle: 'Progress log',
@@ -74,6 +86,9 @@ const ui: Record<
   pt: {
     description: 'O addon do Blender para criar assets de Cities: Skylines 2. Registro de avanços, comentários e sugestões.',
     statusLabel: 'Status',
+    lastUpdate: 'Última atualização',
+    commentsNote: 'No final da página você pode deixar seus comentários e sugestões.',
+    commentsCta: 'Deixar um comentário',
     videoTitle: 'Vídeo do addon',
     featuresTitle: 'O que faz',
     logTitle: 'Registro de avanços',
@@ -93,10 +108,16 @@ const ui: Record<
 
 const langName: Record<Lang, string> = { es: 'ES', en: 'EN', pt: 'PT' }
 
-const tagColor: Record<EntryTag, string> = {
-  novedad: 'var(--accent)',
-  mejora: 'var(--zone-residencial)',
-  arreglo: 'var(--zone-industrial)',
+const tagTone: Record<EntryTag, BadgeTone> = {
+  novedad: 'info',
+  mejora: 'success',
+  arreglo: 'warning',
+}
+
+/** Baja a los comentarios; sin animación si la persona pidió reducir el movimiento. */
+function scrollToComments() {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  document.getElementById('comentarios')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' })
 }
 
 /** localStorage puede no estar disponible (modo privado, datos bloqueados): la página funciona igual. */
@@ -172,10 +193,21 @@ export function AddonPage() {
         >
           <div className="space-y-4">
             <p className="max-w-xl text-lg text-[var(--text-secondary)]">{pick(addon.intro, lang)}</p>
-            <p className="text-sm font-semibold">
-              <span className="text-[var(--text-muted)]">{t.statusLabel}: </span>
-              {pick(addon.status, lang)}
-            </p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+              <span className="text-[var(--text-muted)]">{t.statusLabel}</span>
+              <Badge tone="warning">{pick(addon.status, lang)}</Badge>
+              {addon.entries[0] && (
+                <span className="text-[var(--text-muted)]">
+                  {t.lastUpdate}: <span className="font-semibold text-[var(--text-secondary)]">{formatDate(addon.entries[0].date)}</span>
+                </span>
+              )}
+            </div>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 pt-2">
+              <p className="max-w-sm text-sm text-[var(--text-secondary)]">{t.commentsNote}</p>
+              <Button variant="secondary" onClick={scrollToComments}>
+                {t.commentsCta} <ArrowDown size={16} aria-hidden="true" />
+              </Button>
+            </div>
           </div>
           {addon.videoId && (
             <div className="aspect-video overflow-hidden rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)]">
@@ -194,21 +226,38 @@ export function AddonPage() {
 
       {addon.features.length > 0 && (
         <Section id="funciones" title={t.featuresTitle}>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <Carousel
+            label={t.featuresTitle}
+            slideSize="min(86cqw, 460px)"
+            slideLabel={(i, n) => `${pick(addon.features[i].title, lang)} (${i + 1}/${n})`}
+          >
             {addon.features.map((group) => (
               <div
                 key={group.title.es}
-                className="rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)] p-5"
+                className="flex h-full flex-col overflow-hidden rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)]"
               >
-                <h3 className="font-display text-2xl font-extrabold leading-tight">{pick(group.title, lang)}</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-[var(--text-secondary)] marker:text-[var(--accent)]">
-                  {group.items.map((item) => (
-                    <li key={item.es}>{pick(item, lang)}</li>
-                  ))}
-                </ul>
+                {group.image && (
+                  <img
+                    src={asset(`addon/${group.image}`)}
+                    alt={pick(group.title, lang)}
+                    width={1280}
+                    height={800}
+                    loading="lazy"
+                    draggable={false}
+                    className="aspect-[8/5] w-full border-b border-[var(--border)] object-cover"
+                  />
+                )}
+                <div className="p-5">
+                  <h3 className="font-display text-2xl font-extrabold leading-tight">{pick(group.title, lang)}</h3>
+                  <ul className="mt-3 list-disc space-y-2 pl-5 text-[var(--text-secondary)] marker:text-[var(--accent)]">
+                    {group.items.map((item) => (
+                      <li key={item.es}>{pick(item, lang)}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             ))}
-          </div>
+          </Carousel>
         </Section>
       )}
 
@@ -216,50 +265,65 @@ export function AddonPage() {
         {addon.entries.length === 0 ? (
           <p className="text-[var(--text-secondary)]">{t.logEmpty}</p>
         ) : (
-          <ol className="grid gap-5">
-            {addon.entries.map((entry) => (
-              <li
-                key={entry.id}
-                className="rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6"
-              >
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
-                  <time dateTime={entry.date} className="font-semibold text-[var(--text-secondary)]">
-                    {formatDate(entry.date)}
-                  </time>
-                  <span
-                    className="rounded-full border px-2.5 py-0.5 text-xs font-bold uppercase"
-                    style={{ borderColor: tagColor[entry.tag], color: tagColor[entry.tag] }}
-                  >
-                    {t.tag[entry.tag]}
-                  </span>
-                  {entry.version && (
-                    <span className="text-[var(--text-muted)]">
-                      {t.versionLabel} {entry.version}
-                    </span>
-                  )}
-                </div>
-                <h3 className="font-display mt-3 text-2xl font-extrabold leading-tight">{pick(entry.title, lang)}</h3>
-                <p className="mt-2 max-w-3xl whitespace-pre-line text-[var(--text-secondary)]">{pick(entry.text, lang)}</p>
-                {entry.images && entry.images.length > 0 && (
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    {entry.images.map((src) => (
-                      <img
-                        key={src}
-                        src={asset(`addon/${src}`)}
-                        alt={pick(entry.title, lang)}
-                        loading="lazy"
-                        className="w-full rounded-[var(--radius-control)] border border-[var(--border)]"
-                      />
-                    ))}
+          <ol className="relative grid gap-5 pl-8 before:absolute before:bottom-6 before:left-[9.5px] before:top-6 before:w-px before:bg-[var(--border-strong)]">
+            {addon.entries.map((entry, index) => (
+              <li key={entry.id} className="relative">
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-[28px] top-7 h-3 w-3 rounded-full border-2 border-[var(--accent)] bg-[var(--background)]"
+                />
+                {/* <details> nativo: se pliega sin JavaScript y es accesible por teclado. La entrada más nueva viene abierta. */}
+                <details
+                  open={index === 0}
+                  className="group rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)] transition-colors open:border-[var(--border-strong)]"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 sm:px-6 [&::-webkit-details-marker]:hidden">
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm">
+                        <time dateTime={entry.date} className="font-semibold text-[var(--text-secondary)]">
+                          {formatDate(entry.date)}
+                        </time>
+                        <Badge tone={tagTone[entry.tag]} size="sm">
+                          {t.tag[entry.tag]}
+                        </Badge>
+                        {entry.version && (
+                          <span className="text-[var(--text-muted)]">
+                            {t.versionLabel} {entry.version}
+                          </span>
+                        )}
+                      </div>
+                      <h3 className="font-display mt-2 text-2xl font-extrabold leading-tight">{pick(entry.title, lang)}</h3>
+                    </div>
+                    <ChevronDown
+                      size={22}
+                      aria-hidden="true"
+                      className="shrink-0 text-[var(--text-muted)] transition-transform duration-200 group-open:rotate-180 motion-reduce:transition-none"
+                    />
+                  </summary>
+                  <div className="px-5 pb-5 sm:px-6 sm:pb-6">
+                    <p className="max-w-3xl whitespace-pre-line text-[var(--text-secondary)]">{pick(entry.text, lang)}</p>
+                    {entry.images && entry.images.length > 0 && (
+                      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                        {entry.images.map((src) => (
+                          <img
+                            key={src}
+                            src={asset(`addon/${src}`)}
+                            alt={pick(entry.title, lang)}
+                            loading="lazy"
+                            className="w-full rounded-[var(--radius-control)] border border-[var(--border)]"
+                          />
+                        ))}
+                      </div>
+                    )}
+                    {entry.link && (
+                      <div className="mt-4">
+                        <ButtonLink variant="secondary" href={entry.link}>
+                          {t.moreLink} <ArrowUpRight size={16} aria-hidden="true" />
+                        </ButtonLink>
+                      </div>
+                    )}
                   </div>
-                )}
-                {entry.link && (
-                  <div className="mt-4">
-                    <ButtonLink variant="secondary" href={entry.link}>
-                      {t.moreLink} <ArrowUpRight size={16} aria-hidden="true" />
-                    </ButtonLink>
-                  </div>
-                )}
+                </details>
               </li>
             ))}
           </ol>

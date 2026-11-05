@@ -19,6 +19,8 @@ export interface AddonEntry {
 /** Grupo de funciones del addon, para la sección "Qué hace". */
 export interface AddonFeature {
   title: Localized
+  /** Captura del addon, archivo de public/addon/ (sin "/" inicial). */
+  image?: string
   items: Localized[]
 }
 

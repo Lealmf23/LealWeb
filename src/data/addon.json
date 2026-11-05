@@ -13,7 +13,11 @@
   "videoId": "xX6geY401Kg",
   "features": [
     {
-      "title": { "es": "Generación", "en": "Generation", "pt": "Geração" },
+      "title": {
+        "es": "Generación",
+        "en": "Generation",
+        "pt": "Geração"
+      },
       "items": [
         {
           "es": "Crea edificios de cualquier tipo: residencial, comercial, oficinas, industrial, servicios y emblemáticos.",
@@ -35,10 +39,15 @@
           "en": "“Update only” rebuilds the building when you change something.",
           "pt": "“Atualizar só” refaz o edifício quando você muda algo."
         }
-      ]
+      ],
+      "image": "funcion-generacion.jpg"
     },
     {
-      "title": { "es": "Componentes", "en": "Components", "pt": "Componentes" },
+      "title": {
+        "es": "Componentes",
+        "en": "Components",
+        "pt": "Componentes"
+      },
       "items": [
         {
           "es": "Cada componente es un botón que abre una ventana con ajustes que se aplican en vivo: ventanas, puertas, balcones, muro cortina, paredes, techo, cornisas y porche.",
@@ -60,20 +69,30 @@
           "en": "The roof, porch and the rest remember their model when you reopen them.",
           "pt": "O telhado, o alpendre e os demais lembram seu modelo quando você os abre de novo."
         }
-      ]
+      ],
+      "image": "funcion-componentes.jpg"
     },
     {
-      "title": { "es": "Revestimientos y detalles", "en": "Cladding and details", "pt": "Revestimentos e detalhes" },
+      "title": {
+        "es": "Revestimientos y detalles",
+        "en": "Cladding and details",
+        "pt": "Revestimentos e detalhes"
+      },
       "items": [
         {
           "es": "Paños de color, cajones de ventana, listones, materiales por pared, zócalos y remates.",
           "en": "Color panels, window boxes, slats, per-wall materials, plinths and trims.",
           "pt": "Painéis de cor, caixas de janela, ripas, materiais por parede, rodapés e arremates."
         }
-      ]
+      ],
+      "image": "funcion-revestimientos.jpg"
     },
     {
-      "title": { "es": "LODs", "en": "LODs", "pt": "LODs" },
+      "title": {
+        "es": "LODs",
+        "en": "LODs",
+        "pt": "LODs"
+      },
       "items": [
         {
           "es": "Arma LOD0, LOD1 y LOD2 con límites de triángulos.",
@@ -90,10 +109,15 @@
           "en": "A report warns you if any LOD goes over the limits.",
           "pt": "Um relatório avisa se algum LOD passar dos limites."
         }
-      ]
+      ],
+      "image": "funcion-lods.jpg"
     },
     {
-      "title": { "es": "UV y texturas", "en": "UVs and textures", "pt": "UV e texturas" },
+      "title": {
+        "es": "UV y texturas",
+        "en": "UVs and textures",
+        "pt": "UV e texturas"
+      },
       "items": [
         {
           "es": "Hace UV, hornea sombras y asigna materiales PBR.",
@@ -105,10 +129,15 @@
           "en": "Quick texture preview and textures shared between LODs.",
           "pt": "Visualização rápida de texturas e textura compartilhada entre LODs."
         }
-      ]
+      ],
+      "image": "funcion-texturas.jpg"
     },
     {
-      "title": { "es": "Exportación", "en": "Export", "pt": "Exportação" },
+      "title": {
+        "es": "Exportación",
+        "en": "Export",
+        "pt": "Exportação"
+      },
       "items": [
         {
           "es": "Exporta FBX para Cities: Skylines 2 y también para CS1.",
@@ -120,7 +149,8 @@
           "en": "Can generate several buildings in a batch.",
           "pt": "Pode gerar vários edifícios em lote."
         }
-      ]
+      ],
+      "image": "funcion-exportacion.jpg"
     }
   ],
   "entries": [
