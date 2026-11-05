@@ -7,6 +7,10 @@ export interface WorkshopItem {
   image: string
   game: string
   url: string
+  /** Métricas de la API de Steam; pueden faltar si falló. "likes" son los favoritos del Workshop. */
+  subscribers?: number
+  likes?: number
+  sizeBytes?: number
 }
 
 /** Publicaciones de Cities: Skylines en el Workshop de Steam. */

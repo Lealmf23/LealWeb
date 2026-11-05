@@ -2,6 +2,7 @@ import { PageHeader } from '@/components/layout/PageHeader'
 import { Link } from 'react-router-dom'
 import { Hero } from '@/components/layout/Hero'
 import { Community } from '@/sections/Community'
+import { LatestAssets } from '@/sections/LatestAssets'
 import { LatestVideos } from '@/sections/LatestVideos'
 import { Resources } from '@/sections/Resources'
 
@@ -10,6 +11,7 @@ export function Home() {
     <>
       <Hero />
       <LatestVideos />
+      <LatestAssets />
       <Resources />
       <Community />
     </>

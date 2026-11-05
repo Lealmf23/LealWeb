@@ -42,6 +42,42 @@ function parsePage(html) {
   return items
 }
 
+/**
+ * Suscriptores, favoritos y tamaño desde la API pública de Steam (GetPublishedFileDetails, sin clave).
+ * Si falla, se conservan las métricas del JSON anterior y el build sigue.
+ */
+async function addStats(items) {
+  const previous = new Map()
+  try {
+    for (const p of JSON.parse(await readFile(OUT, 'utf8'))) previous.set(p.id, p)
+  } catch {}
+  const keep = ['subscribers', 'likes', 'sizeBytes']
+  try {
+    const body = new URLSearchParams({ itemcount: String(items.length) })
+    items.forEach((item, i) => body.set(`publishedfileids[${i}]`, item.id))
+    const res = await fetchRetry('https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/', {
+      method: 'POST',
+      body,
+    })
+    const details = new Map(
+      ((await res.json()).response?.publishedfiledetails ?? []).map((d) => [String(d.publishedfileid), d]),
+    )
+    for (const item of items) {
+      const d = details.get(item.id)
+      if (d?.result !== 1) {
+        keep.forEach((k) => previous.get(item.id)?.[k] !== undefined && (item[k] = previous.get(item.id)[k]))
+        continue
+      }
+      item.subscribers = Number(d.subscriptions) || 0
+      item.likes = Number(d.favorited) || 0
+      item.sizeBytes = Number(d.file_size) || 0
+    }
+  } catch (err) {
+    warnBuild('workshop', `métricas no disponibles (${err.message}); se conservan las anteriores`)
+    for (const item of items) keep.forEach((k) => previous.get(item.id)?.[k] !== undefined && (item[k] = previous.get(item.id)[k]))
+  }
+}
+
 try {
   const all = []
   const seen = new Set()
@@ -53,6 +89,7 @@ try {
     all.push(...items)
   }
   if (!all.length) throw new Error('sin publicaciones')
+  await addStats(all)
   await writeFile(OUT, JSON.stringify(all, null, 2) + '\n')
   console.log(`[workshop] ${all.length} publicaciones guardadas`)
 } catch (err) {

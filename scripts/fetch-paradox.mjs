@@ -83,10 +83,35 @@ async function fetchMod(id, url) {
   throw lastError
 }
 
+/** Métricas desde la API que usa la propia web de Paradox Mods (pública, sin login). */
+async function fetchStats(id) {
+  const res = await fetch(`https://api.paradox-interactive.com/mods?modId=${id}&os=Any&version=latest`, {
+    headers: { 'user-agent': 'LealWeb-build/1.0', accept: 'application/json' },
+  })
+  if (!res.ok) throw new Error(`API HTTP ${res.status}`)
+  const d = (await res.json()).modDetail
+  if (!d) throw new Error('API sin modDetail')
+  return {
+    subscribers: Number(d.subscriptions) || 0,
+    likes: Number(d.ratingsTotal) || 0,
+    sizeBytes: Number(d.metadata?.size_in_memory) || 0,
+    created: String(d.creationDate ?? ''),
+  }
+}
+
 for (const id of ids) {
   const url = `https://mods.paradoxplaza.com/mods/${id}/Any`
   try {
-    result.push(await fetchMod(id, url))
+    const mod = await fetchMod(id, url)
+    try {
+      Object.assign(mod, await fetchStats(id))
+    } catch (err) {
+      // Si la API falla, se conservan las métricas anteriores (si las había).
+      console.warn(`[paradox] ${id}: métricas no disponibles (${err.message})`)
+      const old = byId.get(String(id))
+      if (old) Object.assign(mod, { subscribers: old.subscribers, likes: old.likes, sizeBytes: old.sizeBytes, created: old.created })
+    }
+    result.push(mod)
   } catch (err) {
     console.warn(`[paradox] ${id}: ${err.message}`)
     const old = byId.get(String(id))
