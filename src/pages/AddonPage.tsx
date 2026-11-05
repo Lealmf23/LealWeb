@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { ArrowDown, ArrowUpRight, ChevronDown } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Carousel } from '@/components/arc/carousel/carousel'
 import { Badge, type BadgeTone } from '@/components/arc/badge/badge'
 import { Button } from '@/components/arc/button/button'
@@ -8,7 +8,7 @@ import { ButtonLink } from '@/components/layout/ButtonLink'
 import { GiscusComments } from '@/components/layout/GiscusComments'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Section } from '@/components/layout/Section'
-import { ADDON_NAME, addon, discussionsUrl, giscusConfigured, type EntryTag } from '@/data/addon'
+import { ADDON_NAME, addon, discussionsUrl, giscusConfigured, type AddonFeature, type EntryTag } from '@/data/addon'
 import { socials } from '@/data/site'
 import { LANGS, pick, resolveLang, type Lang } from '@/lib/addonLang'
 import { asset } from '@/lib/utils'
@@ -27,6 +27,8 @@ const ui: Record<
     commentsCta: string
     videoTitle: string
     featuresTitle: string
+    featuresPrev: string
+    featuresNext: string
     logTitle: string
     logEmpty: string
     tag: Record<EntryTag, string>
@@ -49,6 +51,8 @@ const ui: Record<
     commentsCta: 'Dejar un comentario',
     videoTitle: 'Video del addon',
     featuresTitle: 'Qué hace',
+    featuresPrev: 'Anterior',
+    featuresNext: 'Siguiente',
     logTitle: 'Registro de avances',
     logEmpty: 'Pronto habrá novedades.',
     tag: { novedad: 'Novedad', mejora: 'Mejora', arreglo: 'Arreglo' },
@@ -70,6 +74,8 @@ const ui: Record<
     commentsCta: 'Leave a comment',
     videoTitle: 'Addon video',
     featuresTitle: 'What it does',
+    featuresPrev: 'Previous',
+    featuresNext: 'Next',
     logTitle: 'Progress log',
     logEmpty: 'News coming soon.',
     tag: { novedad: 'New', mejora: 'Improvement', arreglo: 'Fix' },
@@ -91,6 +97,8 @@ const ui: Record<
     commentsCta: 'Deixar um comentário',
     videoTitle: 'Vídeo do addon',
     featuresTitle: 'O que faz',
+    featuresPrev: 'Anterior',
+    featuresNext: 'Próximo',
     logTitle: 'Registro de avanços',
     logEmpty: 'Novidades em breve.',
     tag: { novedad: 'Novidade', mejora: 'Melhoria', arreglo: 'Correção' },
@@ -112,6 +120,98 @@ const tagTone: Record<EntryTag, BadgeTone> = {
   novedad: 'info',
   mejora: 'success',
   arreglo: 'warning',
+}
+
+/** Tarjeta de un grupo de funciones: captura del addon arriba y la lista debajo. */
+function FeatureCard({ group, lang }: { group: AddonFeature; lang: Lang }) {
+  return (
+    <div className="flex h-full flex-col overflow-hidden rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)]">
+      {group.image && (
+        <img
+          src={asset(`addon/${group.image}`)}
+          alt={pick(group.title, lang)}
+          width={1280}
+          height={800}
+          loading="lazy"
+          draggable={false}
+          className="aspect-[8/5] w-full border-b border-[var(--border)] object-cover"
+        />
+      )}
+      <div className="p-5">
+        <h3 className="font-display text-2xl font-extrabold leading-tight">{pick(group.title, lang)}</h3>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-[var(--text-secondary)] marker:text-[var(--accent)]">
+          {group.items.map((item) => (
+            <li key={item.es}>{pick(item, lang)}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
+}
+
+/** Fila horizontal de tarjetas (escritorio): arranca pegada a la izquierda, se ajusta a cada tarjeta y tiene flechas. */
+function FeatureScroller({
+  label,
+  prevLabel,
+  nextLabel,
+  children,
+}: {
+  label: string
+  prevLabel: string
+  nextLabel: string
+  children: ReactNode[]
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [edge, setEdge] = useState({ start: true, end: false })
+
+  const update = useCallback(() => {
+    const el = ref.current
+    if (!el) return
+    setEdge({ start: el.scrollLeft < 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 })
+  }, [])
+
+  useEffect(() => {
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [update])
+
+  const go = (dir: 1 | -1) => {
+    const el = ref.current
+    if (!el) return
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    el.scrollBy({ left: dir * el.clientWidth * 0.9, behavior: reduce ? 'auto' : 'smooth' })
+  }
+
+  const arrow =
+    'grid h-10 w-10 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--foreground)] transition-colors hover:bg-[var(--surface-raised)] disabled:cursor-default disabled:opacity-40 disabled:hover:bg-[var(--surface)]'
+
+  return (
+    <div>
+      <div
+        ref={ref}
+        role="region"
+        aria-label={label}
+        tabIndex={0}
+        onScroll={update}
+        className="flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto pb-4 [scrollbar-width:thin]"
+      >
+        {children.map((child, i) => (
+          <div key={i} className="w-[calc((100%-2.5rem)/3)] shrink-0 snap-start">
+            {child}
+          </div>
+        ))}
+      </div>
+      <div className="mt-2 flex justify-end gap-2">
+        <button type="button" aria-label={prevLabel} disabled={edge.start} onClick={() => go(-1)} className={arrow}>
+          <ChevronLeft size={20} aria-hidden="true" />
+        </button>
+        <button type="button" aria-label={nextLabel} disabled={edge.end} onClick={() => go(1)} className={arrow}>
+          <ChevronRight size={20} aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  )
 }
 
 /** Baja a los comentarios; sin animación si la persona pidió reducir el movimiento. */
@@ -226,38 +326,25 @@ export function AddonPage() {
 
       {addon.features.length > 0 && (
         <Section id="funciones" title={t.featuresTitle}>
-          <Carousel
-            label={t.featuresTitle}
-            slideSize="min(86cqw, 460px)"
-            slideLabel={(i, n) => `${pick(addon.features[i].title, lang)} (${i + 1}/${n})`}
-          >
-            {addon.features.map((group) => (
-              <div
-                key={group.title.es}
-                className="flex h-full flex-col overflow-hidden rounded-[var(--radius-surface)] border border-[var(--border)] bg-[var(--surface)]"
-              >
-                {group.image && (
-                  <img
-                    src={asset(`addon/${group.image}`)}
-                    alt={pick(group.title, lang)}
-                    width={1280}
-                    height={800}
-                    loading="lazy"
-                    draggable={false}
-                    className="aspect-[8/5] w-full border-b border-[var(--border)] object-cover"
-                  />
-                )}
-                <div className="p-5">
-                  <h3 className="font-display text-2xl font-extrabold leading-tight">{pick(group.title, lang)}</h3>
-                  <ul className="mt-3 list-disc space-y-2 pl-5 text-[var(--text-secondary)] marker:text-[var(--accent)]">
-                    {group.items.map((item) => (
-                      <li key={item.es}>{pick(item, lang)}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </Carousel>
+          {/* En móvil se desliza con el carrusel (la tarjeta activa al centro); desde escritorio, una fila que arranca a la izquierda. */}
+          <div className="lg:hidden">
+            <Carousel
+              label={t.featuresTitle}
+              slideSize="min(86cqw, 460px)"
+              slideLabel={(i, n) => `${pick(addon.features[i].title, lang)} (${i + 1}/${n})`}
+            >
+              {addon.features.map((group) => (
+                <FeatureCard key={group.title.es} group={group} lang={lang} />
+              ))}
+            </Carousel>
+          </div>
+          <div className="hidden lg:block">
+            <FeatureScroller label={t.featuresTitle} prevLabel={t.featuresPrev} nextLabel={t.featuresNext}>
+              {addon.features.map((group) => (
+                <FeatureCard key={group.title.es} group={group} lang={lang} />
+              ))}
+            </FeatureScroller>
+          </div>
         </Section>
       )}
 

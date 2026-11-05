@@ -5,13 +5,13 @@ import { Reveal } from '@/components/layout/Reveal'
 import { Section } from '@/components/layout/Section'
 import { paradoxAssets } from '@/data/paradox'
 import { resources } from '@/data/site'
-import { workshopAssets, workshopMaps } from '@/data/workshop'
+import { workshopAssets } from '@/data/workshop'
 
 /** Cada categoría lleva el color de una zona del juego. */
 const zone = {
   mods: 'var(--zone-comercial)',
   assets: 'var(--zone-residencial)',
-  mapas: 'var(--zone-industrial)',
+  addon: 'var(--zone-industrial)',
   setup: 'var(--zone-oficina)',
 } as const
 
@@ -19,7 +19,7 @@ const zone = {
 const badge = {
   mods: 'Playset de CS2',
   assets: `${paradoxAssets.length + workshopAssets.length} creaciones`,
-  mapas: `${workshopMaps.length} mapas`,
+  addon: 'Addon de Blender',
   setup: 'Mi equipo',
 } as const
 
@@ -39,7 +39,11 @@ export function Resources() {
                 aria-hidden="true"
               />
               <div className="flex items-center justify-between gap-2">
-                <h3 className="font-display text-3xl font-extrabold leading-none">{r.title}</h3>
+                <h3
+                  className={`font-display font-extrabold leading-none ${r.title.length > 10 ? 'text-2xl sm:text-[1.65rem]' : 'text-3xl'}`}
+                >
+                  {r.title}
+                </h3>
                 <ArrowUpRight
                   size={22}
                   className="shrink-0 transition-transform duration-200 group-hover:-translate-y-1 group-hover:translate-x-1 motion-reduce:transition-none"

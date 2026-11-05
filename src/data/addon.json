@@ -18,6 +18,7 @@
         "en": "Generation",
         "pt": "Geração"
       },
+      "image": "funcion-generacion.jpg",
       "items": [
         {
           "es": "Crea edificios de cualquier tipo: residencial, comercial, oficinas, industrial, servicios y emblemáticos.",
@@ -30,6 +31,61 @@
           "pt": "Parte de uma forma base que você pode extrudar e editar, não só uma caixa. Dá para ajustar a forma toda ou só as faces que escolher."
         },
         {
+          "es": "Plantas en caja, L, T y U que podés editar con Tab y extruir con E.",
+          "en": "Box, L, T and U footprints you can edit with Tab and extrude with E.",
+          "pt": "Plantas em caixa, L, T e U que você pode editar com Tab e extrudar com E."
+        },
+        {
+          "es": "Si ya tenés un edificio modelado a mano, lo usa como LOD0 y le arma las UV y los LODs.",
+          "en": "If you already have a hand-modeled building, it uses it as LOD0 and builds the UVs and LODs for it.",
+          "pt": "Se você já tem um edifício modelado à mão, ele o usa como LOD0 e monta os UVs e os LODs."
+        }
+      ]
+    },
+    {
+      "title": {
+        "es": "Tipos de fachada",
+        "en": "Facade types",
+        "pt": "Tipos de fachada"
+      },
+      "image": "funcion-tipos.jpg",
+      "items": [
+        {
+          "es": "13 tipos listos con un clic: torre de vidrio, oficinas, ladrillo comercial, departamentos, depósito y más.",
+          "en": "13 ready-made types in one click: glass tower, offices, brick commercial, apartments, warehouse and more.",
+          "pt": "13 tipos prontos com um clique: torre de vidro, escritórios, tijolo comercial, apartamentos, depósito e mais."
+        },
+        {
+          "es": "Cada tipo pone de una vez estilos, materiales, balcones, techo y colores; después ajustás lo que quieras.",
+          "en": "Each type sets styles, materials, balconies, roof and colors at once; then you adjust whatever you want.",
+          "pt": "Cada tipo define de uma vez estilos, materiais, varandas, telhado e cores; depois você ajusta o que quiser."
+        },
+        {
+          "es": "14 plantillas de arranque según el tipo de asset, de residencial a emblemático.",
+          "en": "14 starter templates by asset type, from residential to landmark.",
+          "pt": "14 modelos iniciais conforme o tipo de asset, de residencial a emblemático."
+        },
+        {
+          "es": "Ficha con IA: le pasás fotos de un edificio a una IA, pegás el JSON que te devuelve y el addon arma el edificio.",
+          "en": "AI sheet: give photos of a building to an AI, paste the JSON it returns and the addon builds the building.",
+          "pt": "Ficha com IA: você passa fotos de um edifício para uma IA, cola o JSON que ela devolve e o addon monta o edifício."
+        }
+      ]
+    },
+    {
+      "title": {
+        "es": "Componentes",
+        "en": "Components",
+        "pt": "Componentes"
+      },
+      "image": "funcion-componentes.jpg",
+      "items": [
+        {
+          "es": "Cada componente es un botón que abre una ventana con ajustes que se aplican en vivo: ventanas, puertas, balcones, muro cortina, paredes, retícula, planta comercial, techo, cornisas y porche.",
+          "en": "Each component is a button that opens a window with live settings: windows, doors, balconies, curtain wall, walls, grid, commercial ground floor, roof, cornices and porch.",
+          "pt": "Cada componente é um botão que abre uma janela com ajustes aplicados ao vivo: janelas, portas, varandas, parede cortina, paredes, reticulado, térreo comercial, telhado, cornijas e alpendre."
+        },
+        {
           "es": "Panel lateral en la tecla N, pestaña CS2.",
           "en": "Side panel on the N key, CS2 tab.",
           "pt": "Painel lateral na tecla N, aba CS2."
@@ -38,26 +94,31 @@
           "es": "“Actualizar solo” rehace el edificio cuando cambiás algo.",
           "en": "“Update only” rebuilds the building when you change something.",
           "pt": "“Atualizar só” refaz o edifício quando você muda algo."
+        },
+        {
+          "es": "El techo, el porche y los demás recuerdan su modelo al volver a abrirlos.",
+          "en": "The roof, porch and the rest remember their model when you reopen them.",
+          "pt": "O telhado, o alpendre e os demais lembram seu modelo quando você os abre de novo."
         }
-      ],
-      "image": "funcion-generacion.jpg"
+      ]
     },
     {
       "title": {
-        "es": "Componentes",
-        "en": "Components",
-        "pt": "Componentes"
+        "es": "Estilos y muro cortina",
+        "en": "Styles and curtain wall",
+        "pt": "Estilos e parede cortina"
       },
+      "image": "funcion-estilos.jpg",
       "items": [
         {
-          "es": "Cada componente es un botón que abre una ventana con ajustes que se aplican en vivo: ventanas, puertas, balcones, muro cortina, paredes, techo, cornisas y porche.",
-          "en": "Each component is a button that opens a window with live settings: windows, doors, balconies, curtain wall, walls, roof, cornices and porch.",
-          "pt": "Cada componente é um botão que abre uma janela com ajustes aplicados ao vivo: janelas, portas, varandas, parede cortina, paredes, telhado, cornijas e alpendre."
+          "es": "Biblioteca de estilos con vista previa: 56 de ventana, 62 de puerta (con portones de garaje) y 55 de balcón.",
+          "en": "Style library with previews: 56 window, 62 door (including garage doors) and 55 balcony styles.",
+          "pt": "Biblioteca de estilos com pré-visualização: 56 de janela, 62 de porta (com portões de garagem) e 55 de varanda."
         },
         {
-          "es": "Cada uno trae estilos prearmados y podés guardar los tuyos, marcados con ★.",
-          "en": "Each one comes with ready-made styles, and you can save your own, marked with ★.",
-          "pt": "Cada um traz estilos prontos e você pode salvar os seus, marcados com ★."
+          "es": "Editás un estilo, guardás los tuyos (con ★) y los exportás o importás en otra computadora.",
+          "en": "Edit a style, save your own (marked ★) and export or import them on another computer.",
+          "pt": "Você edita um estilo, salva os seus (com ★) e os exporta ou importa em outro computador."
         },
         {
           "es": "El muro cortina trae 14 estilos, cada uno en versión solo vidrio y con acceso. La puerta lleva manijas y se puede mover.",
@@ -65,12 +126,41 @@
           "pt": "A parede cortina tem 14 estilos, cada um em versão só vidro e com acesso. A porta tem maçanetas e pode ser movida."
         },
         {
-          "es": "El techo, el porche y los demás recuerdan su modelo al volver a abrirlos.",
-          "en": "The roof, porch and the rest remember their model when you reopen them.",
-          "pt": "O telhado, o alpendre e os demais lembram seu modelo quando você os abre de novo."
+          "es": "Retícula estructural (pilastras y losas en relieve) y planta baja comercial con vidriera, pilares, cartel y toldos.",
+          "en": "Structural grid (raised pilasters and slabs) and a commercial ground floor with shopfront, piers, sign and awnings.",
+          "pt": "Reticulado estrutural (pilastras e lajes em relevo) e térreo comercial com vitrine, pilares, letreiro e toldos."
         }
-      ],
-      "image": "funcion-componentes.jpg"
+      ]
+    },
+    {
+      "title": {
+        "es": "Edición por pared",
+        "en": "Per-wall editing",
+        "pt": "Edição por parede"
+      },
+      "image": "funcion-paredes.jpg",
+      "items": [
+        {
+          "es": "Elegís una o varias caras de la forma y los cambios valen solo para ellas; si no, valen para todo el edificio.",
+          "en": "Pick one or several faces of the shape and changes apply only to them; otherwise they apply to the whole building.",
+          "pt": "Você escolhe uma ou várias faces da forma e as mudanças valem só para elas; senão, valem para o edifício todo."
+        },
+        {
+          "es": "Cada pared lleva sus propias ventanas, puerta, balcones, material y giro de textura.",
+          "en": "Each wall has its own windows, door, balconies, material and texture rotation.",
+          "pt": "Cada parede tem suas próprias janelas, porta, varandas, material e giro de textura."
+        },
+        {
+          "es": "Las aberturas de cada pared se editan una por una: borrar, mover, cambiar de tipo, medidas y estilo, o agregar otra.",
+          "en": "The openings of each wall are edited one by one: delete, move, change type, size and style, or add another.",
+          "pt": "As aberturas de cada parede são editadas uma a uma: apagar, mover, mudar tipo, medidas e estilo, ou adicionar outra."
+        },
+        {
+          "es": "Las paredes en curva se tratan como una sola: ventanas y balcones se reparten a lo largo del arco.",
+          "en": "Curved walls are treated as a single wall: windows and balconies spread along the arc.",
+          "pt": "Paredes curvas são tratadas como uma só: janelas e varandas se distribuem ao longo do arco."
+        }
+      ]
     },
     {
       "title": {
@@ -78,14 +168,69 @@
         "en": "Cladding and details",
         "pt": "Revestimentos e detalhes"
       },
+      "image": "funcion-revestimientos.jpg",
       "items": [
         {
           "es": "Paños de color, cajones de ventana, listones, materiales por pared, zócalos y remates.",
           "en": "Color panels, window boxes, slats, per-wall materials, plinths and trims.",
           "pt": "Painéis de cor, caixas de janela, ripas, materiais por parede, rodapés e arremates."
+        },
+        {
+          "es": "Paños de color con varios patrones: al azar, ajedrez, columnas o crujías enteras, con los materiales B, C y D.",
+          "en": "Color panels in several patterns: random, checkerboard, columns or full bays, with materials B, C and D.",
+          "pt": "Painéis de cor em vários padrões: aleatório, xadrez, colunas ou vãos inteiros, com os materiais B, C e D."
+        },
+        {
+          "es": "Lamas verticales u horizontales y marcos salientes alrededor de las ventanas.",
+          "en": "Vertical or horizontal slats and projecting frames around the windows.",
+          "pt": "Ripas verticais ou horizontais e molduras salientes ao redor das janelas."
+        },
+        {
+          "es": "Planta baja con otro material, por ejemplo un zócalo de ladrillo, y colores para fachada, molduras, techo, puertas y barandas.",
+          "en": "Ground floor in another material, for example a brick plinth, and colors for facade, trims, roof, doors and railings.",
+          "pt": "Térreo em outro material, por exemplo um rodapé de tijolo, e cores para fachada, molduras, telhado, portas e guarda-corpos."
         }
-      ],
-      "image": "funcion-revestimientos.jpg"
+      ]
+    },
+    {
+      "title": {
+        "es": "Techos y porches",
+        "en": "Roofs and porches",
+        "pt": "Telhados e alpendres"
+      },
+      "image": "funcion-techos.jpg",
+      "items": [
+        {
+          "es": "16 modelos de techo: dos aguas, cuatro aguas, una agua, mansarda, mariposa y plano.",
+          "en": "16 roof models: gable, hip, shed, mansard, butterfly and flat.",
+          "pt": "16 modelos de telhado: duas águas, quatro águas, uma água, mansarda, borboleta e plano."
+        },
+        {
+          "es": "Buhardillas de cuatro formas y hasta dos chimeneas.",
+          "en": "Dormers in four shapes and up to two chimneys.",
+          "pt": "Mansardas em quatro formas e até duas chaminés."
+        },
+        {
+          "es": "Aleros por lado (frente, fondo y costados), tejas en relieve, cumbreras y limahoyas.",
+          "en": "Eaves per side (front, back and sides), raised tiles, ridges and valleys.",
+          "pt": "Beirais por lado (frente, fundo e laterais), telhas em relevo, cumeeiras e rincões."
+        },
+        {
+          "es": "11 modelos de porche: farmer, envolvente, con frontón, veranda, cerrado vidriado y más.",
+          "en": "11 porch models: farmer, wraparound, gabled, veranda, glass-enclosed and more.",
+          "pt": "11 modelos de alpendre: farmer, envolvente, com frontão, varanda, fechado com vidro e mais."
+        },
+        {
+          "es": "Cornisas entre pisos en cuatro estilos.",
+          "en": "Cornices between floors in four styles.",
+          "pt": "Cornijas entre andares em quatro estilos."
+        },
+        {
+          "es": "Parapet y cornisa del techo plano con alto y vuelo regulables.",
+          "en": "Flat roof parapet and cornice with adjustable height and overhang.",
+          "pt": "Platibanda e cornija do telhado plano com altura e balanço ajustáveis."
+        }
+      ]
     },
     {
       "title": {
@@ -93,6 +238,7 @@
         "en": "LODs",
         "pt": "LODs"
       },
+      "image": "funcion-lods.jpg",
       "items": [
         {
           "es": "Arma LOD0, LOD1 y LOD2 con límites de triángulos.",
@@ -105,12 +251,31 @@
           "pt": "O LOD1 fica entre 50 e 55% do LOD0."
         },
         {
+          "es": "El LOD2 no pasa de 500 triángulos.",
+          "en": "LOD2 never goes over 500 triangles.",
+          "pt": "O LOD2 não passa de 500 triângulos."
+        },
+        {
           "es": "Un reporte avisa si algún LOD pasa los límites.",
           "en": "A report warns you if any LOD goes over the limits.",
           "pt": "Um relatório avisa se algum LOD passar dos limites."
+        },
+        {
+          "es": "Compara los triángulos con la referencia del juego según el tipo de zona.",
+          "en": "Compares the triangles with the game's reference for the zone type.",
+          "pt": "Compara os triângulos com a referência do jogo conforme o tipo de zona."
+        },
+        {
+          "es": "Quita las caras que no se ven, al generar y al exportar.",
+          "en": "Removes faces that can't be seen, when generating and exporting.",
+          "pt": "Remove as faces que não aparecem, ao gerar e ao exportar."
+        },
+        {
+          "es": "Revisa que no queden huecos disparando rayos desde adentro del edificio.",
+          "en": "Checks for holes by shooting rays from inside the building.",
+          "pt": "Verifica se há buracos disparando raios de dentro do edifício."
         }
-      ],
-      "image": "funcion-lods.jpg"
+      ]
     },
     {
       "title": {
@@ -118,6 +283,7 @@
         "en": "UVs and textures",
         "pt": "UV e texturas"
       },
+      "image": "funcion-texturas.jpg",
       "items": [
         {
           "es": "Hace UV, hornea sombras y asigna materiales PBR.",
@@ -128,9 +294,23 @@
           "es": "Vista rápida de texturas y textura compartida entre LODs.",
           "en": "Quick texture preview and textures shared between LODs.",
           "pt": "Visualização rápida de texturas e textura compartilhada entre LODs."
+        },
+        {
+          "es": "Biblioteca de materiales PBR con miniaturas: elegís un set (difuso, normal, rugosidad…) y se aplica al material.",
+          "en": "PBR material library with thumbnails: pick a set (diffuse, normal, roughness…) and it is applied to the material.",
+          "pt": "Biblioteca de materiais PBR com miniaturas: você escolhe um conjunto (difuso, normal, rugosidade…) e ele é aplicado ao material."
+        },
+        {
+          "es": "Las caras iguales comparten lugar en el mapa UV para ganar píxeles por metro.",
+          "en": "Identical faces share space in the UV map to gain pixels per meter.",
+          "pt": "Faces iguais compartilham espaço no mapa UV para ganhar pixels por metro."
+        },
+        {
+          "es": "Ventanas de noche con interiores variados, siempre encendidas o siempre apagadas.",
+          "en": "Night windows with varied interiors, always on or always off.",
+          "pt": "Janelas noturnas com interiores variados, sempre acesas ou sempre apagadas."
         }
-      ],
-      "image": "funcion-texturas.jpg"
+      ]
     },
     {
       "title": {
@@ -138,6 +318,7 @@
         "en": "Export",
         "pt": "Exportação"
       },
+      "image": "funcion-exportacion.jpg",
       "items": [
         {
           "es": "Exporta FBX para Cities: Skylines 2 y también para CS1.",
@@ -148,9 +329,23 @@
           "es": "Puede generar varios edificios en lote.",
           "en": "Can generate several buildings in a batch.",
           "pt": "Pode gerar vários edifícios em lote."
+        },
+        {
+          "es": "Para CS1 arma una malla compacta y su LOD; las ventanas y puertas van como imagen con relieve.",
+          "en": "For CS1 it builds a compact mesh and its LOD; windows and doors are an image with relief.",
+          "pt": "Para o CS1 monta uma malha compacta e seu LOD; janelas e portas vão como imagem com relevo."
+        },
+        {
+          "es": "El nombre del asset y el lote en celdas de 8 m se arman según el tipo (zonificado, servicio o emblemático), y avisa si el lote no entra.",
+          "en": "The asset name and the lot in 8 m cells are set up by type (zoned, service or signature), and it warns you if the lot doesn't fit.",
+          "pt": "O nome do asset e o lote em células de 8 m são montados conforme o tipo (zoneado, serviço ou emblemático), e avisa se o lote não couber."
+        },
+        {
+          "es": "Una lista de control antes de exportar avisa si falta algo: UV, sombras, texturas o carpeta.",
+          "en": "A checklist before exporting tells you if something is missing: UVs, shadows, textures or folder.",
+          "pt": "Uma lista de verificação antes de exportar avisa se algo falta: UVs, sombras, texturas ou pasta."
         }
-      ],
-      "image": "funcion-exportacion.jpg"
+      ]
     }
   ],
   "entries": [

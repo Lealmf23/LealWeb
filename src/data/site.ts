@@ -21,6 +21,6 @@ export const nav = [
 export const resources = [
   { slug: 'mods', to: '/recursos#mods', title: 'Mods', description: 'Mis mods y creaciones para Cities: Skylines 2.' },
   { slug: 'assets', to: '/recursos#assets', title: 'Assets', description: 'Edificios, props y creaciones para tu ciudad.' },
-  { slug: 'mapas', to: '/recursos#mapas', title: 'Mapas', description: 'Mapas para empezar tu próxima ciudad.' },
+  { slug: 'addon', to: '/cs2-asset-builder', title: 'CS2 Asset Builder', description: 'Mi addon de Blender para crear edificios de Cities: Skylines 2.' },
   { slug: 'setup', to: '/setup', title: 'Setup', description: 'La PC y los periféricos que uso para jugar y crear contenido.' },
 ] as const
