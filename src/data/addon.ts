@@ -47,10 +47,10 @@ export const addon: AddonData = {
  */
 export const giscus = {
   repo: 'Lealmf23/LealWeb',
-  repoId: '',
+  repoId: 'R_kgDOVGdn0Q',
   category: 'Addon',
-  categoryId: '',
-  term: 'addon',
+  categoryId: 'DIC_kwDOVGdn0c4DKc3f',
+  term: 'Addon',
 }
 
 /** Giscus solo carga con los dos ids; hasta entonces los comentarios no están activos. */

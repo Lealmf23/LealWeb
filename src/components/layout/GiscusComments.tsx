@@ -32,6 +32,7 @@ export function GiscusComments({ lang, fallbackText, fallbackLinkLabel, fallback
       'data-category-id': giscus.categoryId,
       'data-mapping': 'specific',
       'data-term': giscus.term,
+      'data-strict': '1',
       'data-reactions-enabled': '1',
       'data-emit-metadata': '0',
       'data-input-position': 'top',
