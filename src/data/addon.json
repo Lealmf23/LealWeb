@@ -1,0 +1,234 @@
+{
+  "name": "CS2 Asset Builder",
+  "status": {
+    "es": "En desarrollo",
+    "en": "In development",
+    "pt": "Em desenvolvimento"
+  },
+  "intro": {
+    "es": "Un addon de Blender, hecho por mí, para crear edificios personalizados para Cities: Skylines 2. Con él modelé Altura Nova Residences. Acá voy dejando el registro de cada avance y podés dejar tus comentarios y sugerencias.",
+    "en": "A Blender addon I built for creating custom buildings for Cities: Skylines 2. I used it to model Altura Nova Residences. Here I keep a log of every update, and you can leave your comments and suggestions.",
+    "pt": "Um addon do Blender, feito por mim, para criar edifícios personalizados para Cities: Skylines 2. Com ele modelei o Altura Nova Residences. Aqui deixo o registro de cada avanço e você pode deixar seus comentários e sugestões."
+  },
+  "videoId": "xX6geY401Kg",
+  "features": [
+    {
+      "title": { "es": "Generación", "en": "Generation", "pt": "Geração" },
+      "items": [
+        {
+          "es": "Crea edificios de cualquier tipo: residencial, comercial, oficinas, industrial, servicios y emblemáticos.",
+          "en": "Creates any kind of building: residential, commercial, office, industrial, services and landmarks.",
+          "pt": "Cria edifícios de qualquer tipo: residencial, comercial, escritórios, industrial, serviços e emblemáticos."
+        },
+        {
+          "es": "Parte de una forma base que podés extruir y editar, no solo una caja. Podés ajustar toda la forma o solo las caras que elijas.",
+          "en": "Starts from a base shape you can extrude and edit, not just a box. Adjust the whole shape or only the faces you choose.",
+          "pt": "Parte de uma forma base que você pode extrudar e editar, não só uma caixa. Dá para ajustar a forma toda ou só as faces que escolher."
+        },
+        {
+          "es": "Panel lateral en la tecla N, pestaña CS2.",
+          "en": "Side panel on the N key, CS2 tab.",
+          "pt": "Painel lateral na tecla N, aba CS2."
+        },
+        {
+          "es": "“Actualizar solo” rehace el edificio cuando cambiás algo.",
+          "en": "“Update only” rebuilds the building when you change something.",
+          "pt": "“Atualizar só” refaz o edifício quando você muda algo."
+        }
+      ]
+    },
+    {
+      "title": { "es": "Componentes", "en": "Components", "pt": "Componentes" },
+      "items": [
+        {
+          "es": "Cada componente es un botón que abre una ventana con ajustes que se aplican en vivo: ventanas, puertas, balcones, muro cortina, paredes, techo, cornisas y porche.",
+          "en": "Each component is a button that opens a window with live settings: windows, doors, balconies, curtain wall, walls, roof, cornices and porch.",
+          "pt": "Cada componente é um botão que abre uma janela com ajustes aplicados ao vivo: janelas, portas, varandas, parede cortina, paredes, telhado, cornijas e alpendre."
+        },
+        {
+          "es": "Cada uno trae estilos prearmados y podés guardar los tuyos, marcados con ★.",
+          "en": "Each one comes with ready-made styles, and you can save your own, marked with ★.",
+          "pt": "Cada um traz estilos prontos e você pode salvar os seus, marcados com ★."
+        },
+        {
+          "es": "El muro cortina trae 14 estilos, cada uno en versión solo vidrio y con acceso. La puerta lleva manijas y se puede mover.",
+          "en": "The curtain wall has 14 styles, each in glass-only and with-entrance versions. The door has handles and can be moved.",
+          "pt": "A parede cortina tem 14 estilos, cada um em versão só vidro e com acesso. A porta tem maçanetas e pode ser movida."
+        },
+        {
+          "es": "El techo, el porche y los demás recuerdan su modelo al volver a abrirlos.",
+          "en": "The roof, porch and the rest remember their model when you reopen them.",
+          "pt": "O telhado, o alpendre e os demais lembram seu modelo quando você os abre de novo."
+        }
+      ]
+    },
+    {
+      "title": { "es": "Revestimientos y detalles", "en": "Cladding and details", "pt": "Revestimentos e detalhes" },
+      "items": [
+        {
+          "es": "Paños de color, cajones de ventana, listones, materiales por pared, zócalos y remates.",
+          "en": "Color panels, window boxes, slats, per-wall materials, plinths and trims.",
+          "pt": "Painéis de cor, caixas de janela, ripas, materiais por parede, rodapés e arremates."
+        }
+      ]
+    },
+    {
+      "title": { "es": "LODs", "en": "LODs", "pt": "LODs" },
+      "items": [
+        {
+          "es": "Arma LOD0, LOD1 y LOD2 con límites de triángulos.",
+          "en": "Builds LOD0, LOD1 and LOD2 with triangle limits.",
+          "pt": "Monta LOD0, LOD1 e LOD2 com limites de triângulos."
+        },
+        {
+          "es": "El LOD1 queda entre 50 y 55 % del LOD0.",
+          "en": "LOD1 lands between 50 and 55% of LOD0.",
+          "pt": "O LOD1 fica entre 50 e 55% do LOD0."
+        },
+        {
+          "es": "Un reporte avisa si algún LOD pasa los límites.",
+          "en": "A report warns you if any LOD goes over the limits.",
+          "pt": "Um relatório avisa se algum LOD passar dos limites."
+        }
+      ]
+    },
+    {
+      "title": { "es": "UV y texturas", "en": "UVs and textures", "pt": "UV e texturas" },
+      "items": [
+        {
+          "es": "Hace UV, hornea sombras y asigna materiales PBR.",
+          "en": "Creates UVs, bakes shadows and assigns PBR materials.",
+          "pt": "Faz UV, assa sombras e atribui materiais PBR."
+        },
+        {
+          "es": "Vista rápida de texturas y textura compartida entre LODs.",
+          "en": "Quick texture preview and textures shared between LODs.",
+          "pt": "Visualização rápida de texturas e textura compartilhada entre LODs."
+        }
+      ]
+    },
+    {
+      "title": { "es": "Exportación", "en": "Export", "pt": "Exportação" },
+      "items": [
+        {
+          "es": "Exporta FBX para Cities: Skylines 2 y también para CS1.",
+          "en": "Exports FBX for Cities: Skylines 2 and also for CS1.",
+          "pt": "Exporta FBX para Cities: Skylines 2 e também para CS1."
+        },
+        {
+          "es": "Puede generar varios edificios en lote.",
+          "en": "Can generate several buildings in a batch.",
+          "pt": "Pode gerar vários edifícios em lote."
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "id": "2026-11-05-componentes-tiempo-real",
+      "date": "2026-11-05",
+      "tag": "mejora",
+      "title": {
+        "es": "Los componentes se actualizan en tiempo real",
+        "en": "Components update in real time",
+        "pt": "Os componentes são atualizados em tempo real"
+      },
+      "text": {
+        "es": "Cuando abrís una ventana, puerta, balcón, techo o muro cortina, los cambios se ven en el edificio al instante, sin apretar “Actualizar”. Y si cancelás, todo vuelve a como estaba.",
+        "en": "When you open a window, door, balcony, roof or curtain wall, your changes show on the building instantly, without pressing “Update”. And if you cancel, everything goes back to how it was.",
+        "pt": "Quando você abre uma janela, porta, varanda, telhado ou parede cortina, as mudanças aparecem no edifício na hora, sem apertar “Atualizar”. E se você cancelar, tudo volta como estava."
+      }
+    },
+    {
+      "id": "2026-11-03-3-muros-cortina-puerta",
+      "date": "2026-11-03",
+      "tag": "novedad",
+      "title": {
+        "es": "Muros cortina con puerta de acceso",
+        "en": "Curtain walls with an entrance door",
+        "pt": "Paredes cortina com porta de acesso"
+      },
+      "text": {
+        "es": "Cada uno de los 14 estilos de muro cortina ahora viene en dos versiones: solo vidrio y con acceso. La puerta tiene manijas, queda centrada y la podés mover a izquierda o derecha. Las esquinas quedaron prolijas, con un solo poste.",
+        "en": "Each of the 14 curtain wall styles now comes in two versions: glass only and with an entrance. The door has handles, sits centered, and you can move it left or right. Corners are now clean, with a single post.",
+        "pt": "Cada um dos 14 estilos de parede cortina agora vem em duas versões: só vidro e com acesso. A porta tem maçanetas, fica centralizada e você pode movê-la para a esquerda ou a direita. Os cantos ficaram limpos, com um só poste."
+      }
+    },
+    {
+      "id": "2026-11-03-2-lod1",
+      "date": "2026-11-03",
+      "tag": "mejora",
+      "title": {
+        "es": "LOD1 más ajustado",
+        "en": "Tighter LOD1",
+        "pt": "LOD1 mais ajustado"
+      },
+      "text": {
+        "es": "El LOD1 ahora queda siempre entre el 50 % y el 55 % de los triángulos del LOD0.",
+        "en": "LOD1 now always lands between 50% and 55% of LOD0's triangles.",
+        "pt": "O LOD1 agora fica sempre entre 50% e 55% dos triângulos do LOD0."
+      }
+    },
+    {
+      "id": "2026-11-03-1-componentes-recuerdan",
+      "date": "2026-11-03",
+      "tag": "mejora",
+      "title": {
+        "es": "Los componentes recuerdan lo que elegiste",
+        "en": "Components remember your choices",
+        "pt": "Os componentes lembram o que você escolheu"
+      },
+      "text": {
+        "es": "Si volvés a abrir un componente, el estilo o modelo que ya tenía sigue seleccionado: techo, porche, muro cortina y el resto.",
+        "en": "If you reopen a component, the style or model it already had stays selected: roof, porch, curtain wall and the rest.",
+        "pt": "Se você abrir um componente de novo, o estilo ou modelo que ele já tinha continua selecionado: telhado, alpendre, parede cortina e os demais."
+      }
+    },
+    {
+      "id": "2026-10-22-componentes-paneles",
+      "date": "2026-10-22",
+      "tag": "novedad",
+      "title": {
+        "es": "Componentes como botones con su propio panel",
+        "en": "Components as buttons with their own panel",
+        "pt": "Componentes como botões com seu próprio painel"
+      },
+      "text": {
+        "es": "Ventana, puerta, balcón, muro cortina, paredes, techo, cornisas y porche tienen cada uno su botón y su panel de ajustes, con estilos que podés guardar. Se aplican a todo el edificio o solo a las caras que elijas.",
+        "en": "Window, door, balcony, curtain wall, walls, roof, cornices and porch each have their own button and settings panel, with styles you can save. They apply to the whole building or only to the faces you choose.",
+        "pt": "Janela, porta, varanda, parede cortina, paredes, telhado, cornijas e alpendre têm cada um seu botão e seu painel de ajustes, com estilos que você pode salvar. Eles se aplicam ao edifício todo ou só às faces que você escolher."
+      }
+    },
+    {
+      "id": "2026-10-16-textura-muro-cortina-cs1",
+      "date": "2026-10-16",
+      "tag": "novedad",
+      "version": "2.21",
+      "title": {
+        "es": "Texturas, muro cortina y exportación a CS1",
+        "en": "Textures, curtain wall and CS1 export",
+        "pt": "Texturas, parede cortina e exportação para CS1"
+      },
+      "text": {
+        "es": "El addon suma texturas, muro cortina y exportación para Cities: Skylines 1.",
+        "en": "The addon adds textures, curtain wall and export for Cities: Skylines 1.",
+        "pt": "O addon ganha texturas, parede cortina e exportação para Cities: Skylines 1."
+      }
+    },
+    {
+      "id": "2026-10-15-primeras-versiones",
+      "date": "2026-10-15",
+      "tag": "novedad",
+      "title": {
+        "es": "Primeras versiones del addon",
+        "en": "First versions of the addon",
+        "pt": "Primeiras versões do addon"
+      },
+      "text": {
+        "es": "Las primeras versiones generan edificios con LODs y los exportan para Cities: Skylines 2.",
+        "en": "The first versions generate buildings with LODs and export them for Cities: Skylines 2.",
+        "pt": "As primeiras versões geram edifícios com LODs e os exportam para Cities: Skylines 2."
+      }
+    }
+  ]
+}

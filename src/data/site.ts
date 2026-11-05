@@ -13,6 +13,7 @@ export const nav = [
   { to: '/', label: 'Inicio' },
   { to: '/videos', label: 'Videos' },
   { to: '/recursos', label: 'Recursos' },
+  { to: '/cs2-asset-builder', label: 'CS2 Asset Builder' },
   { to: '/setup', label: 'Setup' },
   { to: '/sobre-mi', label: 'Sobre mí' },
 ] as const

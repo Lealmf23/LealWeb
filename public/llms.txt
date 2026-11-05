@@ -11,6 +11,7 @@ Todo el contenido del sitio en un solo texto: [llms-full.txt](https://lealmafor.
 - [Inicio](https://lealmafor.com/): últimos videos, recursos y comunidad.
 - [Videos](https://lealmafor.com/videos/): series y listas de reproducción, agrupadas por juego.
 - [Recursos](https://lealmafor.com/recursos/): mis mods y assets para Cities: Skylines 2 (Paradox Mods), mi lista de mods (playset), creaciones de Steam Workshop y mapas.
+- [CS2 Asset Builder](https://lealmafor.com/cs2-asset-builder/): mi addon de Blender para crear assets de Cities: Skylines 2, con registro de avances, comentarios y sugerencias.
 - [Setup](https://lealmafor.com/setup/): la PC y los periféricos que uso para jugar y grabar.
 - [Sobre mí](https://lealmafor.com/sobre-mi/): quién es Leal y cómo contactar (contacto@lealmafor.com).
 

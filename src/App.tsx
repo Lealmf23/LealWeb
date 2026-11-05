@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer'
 import { FloatingNav } from '@/components/layout/FloatingNav'
 import { Home, Soon } from '@/pages/Pages'
 import { AboutPage } from '@/pages/AboutPage'
+import { AddonPage } from '@/pages/AddonPage'
 import { ResourcesPage } from '@/pages/ResourcesPage'
 import { SetupPage } from '@/pages/SetupPage'
 import { VideosPage } from '@/pages/VideosPage'
@@ -48,6 +49,7 @@ export default function App() {
           <Route path="/juegos/*" element={<Navigate to="/" replace />} />
           <Route path="/recursos" element={<ResourcesPage />} />
           <Route path="/recursos/:tipo" element={<LegacyResource />} />
+          <Route path="/cs2-asset-builder" element={<AddonPage />} />
           <Route path="/setup" element={<SetupPage />} />
           <Route path="/sobre-mi" element={<AboutPage />} />
           <Route path="*" element={<Soon eyebrow="404" title="Página no encontrada" />} />

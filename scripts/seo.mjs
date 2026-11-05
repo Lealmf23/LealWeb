@@ -15,6 +15,8 @@ const playlists = await json('playlists.json')
 const workshop = await json('workshop.json')
 const paradox = await json('paradox.json')
 const setup = await json('setup.json')
+const addon = await json('addon.json')
+addon.entries.sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id))
 const links = await json('links.json')
 const template = await readFile(new URL('index.html', DIST), 'utf8')
 
@@ -104,6 +106,29 @@ const content = {
         ],
       },
       { h2: 'Mapas', links: workshopMaps.map((m) => link(m.title, m.url, `${m.game}, Steam Workshop`)) },
+    ],
+  },
+  '/cs2-asset-builder': {
+    h1: addon.name,
+    intro: addon.intro.es,
+    sections: [
+      ...(addon.features ?? []).map((g) => ({ h2: g.title.es, items: g.items.map((i) => i.es) })),
+      ...(addon.entries.length
+        ? [
+            {
+              h2: 'Registro de avances',
+              items: addon.entries.map(
+                (e) =>
+                  `${fmtDate(`${e.date}T12:00:00Z`)}${e.version ? ` (versión ${e.version})` : ''} · ${e.title.es}: ${e.text.es}`,
+              ),
+            },
+          ]
+        : []),
+      {
+        h2: 'Comentarios y sugerencias',
+        text: 'Los comentarios y sugerencias se dejan en esta página y el 👍 de cada comentario sirve para votar las ideas. También puedes dejar tu sugerencia en el Discord.',
+        links: [link('Discord', social('discord').url)],
+      },
     ],
   },
   '/setup': {
@@ -242,7 +267,7 @@ for (const [path, page] of Object.entries(seo.routes)) {
 // ---------- Sitemap: solo con fechas que significan algo (la del último video en inicio y videos) ----------
 
 const latest = videos.map((v) => v.published).sort().at(-1)
-const lastmod = { '/': latest, '/videos': latest }
+const lastmod = { '/': latest, '/videos': latest, '/cs2-asset-builder': addon.entries[0]?.date }
 const sitemap =
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
   urls
